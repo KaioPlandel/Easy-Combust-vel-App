@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/black"
+    android:background="#DCE775"
     tools:context=".fragments.HomeFragment">
 
     <ImageView
@@ -30,13 +30,12 @@
             android:layout_height="match_parent"
             android:gravity="center">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:text="       Eazy \n Combústivel"
-                android:textSize="30sp"
-                android:textStyle="italic" />
+            <ImageView
+                android:layout_width="170dp"
+                android:layout_height="150dp"
+                android:src="@drawable/logo1"/>
+
+
         </LinearLayout>
 
 
@@ -48,19 +47,42 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="20dp"
                 android:background="@drawable/blue_background"
                 android:gravity="center"
-                android:text="Meu Veículo"
+                android:text="Saldo"
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
-            <ImageView
-                android:id="@+id/imageView5"
-                android:layout_width="200dp"
-                android:layout_height="150dp"
-                android:layout_marginTop="5dp"
-                app:srcCompat="@drawable/ic_baseline_directions_car_50" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Ganhos : R$200,00"
+                android:textColor="#E31D1D"
+                android:gravity="center_horizontal"
+                android:layout_marginTop="10dp"
+                android:layout_marginHorizontal="10dp"
+                android:textSize="20sp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Gastos : R$100,00"
+                android:textColor="@color/icone_color"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginTop="10dp"
+                android:textSize="20sp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Saldo : R$100,00"
+                android:textColor="@color/black"
+                android:textAlignment="center"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginTop="10dp"
+                android:textSize="20sp"/>
+
 
 
         </LinearLayout>
@@ -102,9 +124,10 @@
 
             <TextView
                 android:id="@+id/textAlcolOuGas"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
+                android:layout_marginHorizontal="2dp"
                 android:text="Álcool X Gasolina"
                 android:textColor="@color/black"
                 android:textSize="18sp"
@@ -135,7 +158,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.228"
-                app:srcCompat="@drawable/ic_baseline_local_drink_24" />
+                app:srcCompat="@drawable/ic_baseline_local_drink_90" />
 
             <TextView
                 android:id="@+id/textKmLitro"
@@ -172,7 +195,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.228"
-                app:srcCompat="@drawable/ic_baseline_alt_route_90" />
+                app:srcCompat="@drawable/ic_baseline_alt_route_24" />
 
             <TextView
                 android:id="@+id/textPercurso"
@@ -208,7 +231,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.228"
-                app:srcCompat="@drawable/ic_baseline_attach_money_90" />
+                app:srcCompat="@drawable/ic_baseline_attach_money_24" />
 
             <TextView
                 android:id="@+id/textLitroGasto"

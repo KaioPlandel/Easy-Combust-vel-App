@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -136,6 +137,7 @@ public class ReceitaFragment extends Fragment {
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
         recycleViewReceita.setLayoutManager(layoutManager);
         recycleViewReceita.setHasFixedSize(true);
+        recycleViewReceita.addItemDecoration(new DividerItemDecoration(getContext(),LinearLayout.VERTICAL));
         recycleViewReceita.setAdapter(adapterReceita);
 
         //gera a lista de opçoes de receita
@@ -156,11 +158,13 @@ public class ReceitaFragment extends Fragment {
     }
 
     public void criarReceitas(){
-        receita = new Receita("casa","caonca","nxjabxj","kinozbc");
+        receita = new Receita("R$20,00","14/01/2020","Entrega Aplicativo","");
         listaReceitas.add(receita);
-        receita = new Receita("casa","caonca","nxjabxj","kinozbc");
+        receita = new Receita("35,00","13/01/2020","Entrega Particular","loja nova");
         listaReceitas.add(receita);
-        receita = new Receita("casa","caonca","nxjabxj","kinozbc");
+        receita = new Receita("10","01/02/2020","Outros","");
+        listaReceitas.add(receita);
+        receita = new Receita("25,00","14/01/2020","Entrega Aplicativo","");
         listaReceitas.add(receita);
     }
 

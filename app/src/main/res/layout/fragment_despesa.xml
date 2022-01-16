@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="#F0F4C3"
     tools:context=".fragments.DespesaFragment">
 
     <LinearLayout
@@ -16,6 +17,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:hint="R$ 00,00"
+            android:textColorHint="@color/black"
             android:inputType="numberDecimal"
             android:textSize="60sp"
             android:gravity="center"
@@ -27,6 +29,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
+        android:background="@color/white"
         android:orientation="vertical">
 
         <com.google.android.material.textfield.TextInputLayout
@@ -86,6 +89,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
+                android:backgroundTint="@color/white"
                 android:layout_margin="16dp"
                 android:src="@drawable/ic_baseline_done_24"
                 />
