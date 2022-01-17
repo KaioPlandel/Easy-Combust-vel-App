@@ -1,21 +1,21 @@
 package com.example.eazycombustivel.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ImageView;
+
 
 import com.example.eazycombustivel.R;
-import com.example.eazycombustivel.fragments.HomeFragment;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class MainActivity extends AppCompatActivity {
 
-   private HomeFragment homeFragment;
-   private ImageView buttonAddCombustivel;
-
+    private FloatingActionButton buttonAddCombustivel;
+    ConstraintLayout buttonCalculoKmLitro, buttonAlcoolXGasolina, buttonQuantidadeLitro, buttonCustoPercurso;
 
 
     @Override
@@ -23,10 +23,15 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        buttonCalculoKmLitro = findViewById(R.id.buttonCalculoKmLitro);
+        buttonAlcoolXGasolina = findViewById(R.id.buttonalcoolXGasolina);
+        buttonQuantidadeLitro = findViewById(R.id.litrosGasto);
+        buttonCustoPercurso = findViewById(R.id.buttonCustoPercurso);
 
-        buttonAddCombustivel = findViewById(R.id.addCombustivel);
+        buttonAddCombustivel = findViewById(R.id.buttonaddCombustivel);
+        // buttonSave = findViewById(R.id.buttonSave);
 
-        //QUANDO CLICAR NO BOTAO VAI PRA TELA DE ADD DESPESA
+        // QUANDO CLICAR NO BOTAO VAI PRA TELA DE ADD DESPESA
 
         buttonAddCombustivel.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -34,29 +39,47 @@ public class MainActivity extends AppCompatActivity {
                 goToAddDespesa();
             }
         });
+        buttonQuantidadeLitro.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), QuantidadeLitrosActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        buttonAlcoolXGasolina.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), AlcoolXGasolinaActivity.class);
+                startActivity(intent);
+            }
+        });
+
+
+        buttonCalculoKmLitro.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), MediaKmLitroActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        buttonCustoPercurso.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), CustoXTrajetoActivity.class);
+                startActivity(intent);
+            }
+        });
 
 
     }
 
 
-
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-        goToHome();
-    };
-
-    public void goToHome(){
-        homeFragment = new HomeFragment();
-        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.add(R.id.fragmento,homeFragment);
-        transaction.commit();
-    };
-
-    public void goToAddDespesa(){
+    public void goToAddDespesa() {
         startActivity(new Intent(getApplicationContext(), ReceitaEDespesaActivity.class));
     }
+
 }
 
 

@@ -1,5 +1,6 @@
 package com.example.eazycombustivel.adapter;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,39 +12,46 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.eazycombustivel.Helper.Receita;
 import com.example.eazycombustivel.R;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class AdapterReceita extends RecyclerView.Adapter<AdapterReceita.MyViewHolder> {
+    private Context context;
+    private ArrayList<String> receitaValor,receitaData,receitaCategoria,receitaOBS;
 
-    List<Receita> receitaLista;
-
-    public AdapterReceita(List<Receita> lista) {
-        this.receitaLista = lista;
+    public AdapterReceita(Context context, ArrayList receitaValor, ArrayList receitaData,ArrayList receitaCategoria,ArrayList receitaOBS) {
+        this.context = context;
+        this.receitaValor = receitaValor;
+        this.receitaData = receitaData;
+        this.receitaCategoria = receitaCategoria;
+        this.receitaOBS = receitaOBS;
     }
 
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
-        View itemLista = LayoutInflater.from(parent.getContext()).inflate(R.layout.adapter_receita,parent,false);
-        return new MyViewHolder(itemLista);
+       LayoutInflater inflanter = LayoutInflater.from(context);
+      View view = inflanter.inflate(R.layout.adapter_receita,parent,false);
+
+        return new MyViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
 
-        Receita receitas = receitaLista.get(position);
+        holder.valor.setText(String.valueOf(receitaValor.get(position)));
+        holder.data.setText(String.valueOf(receitaData.get(position)));
+        holder.tipo.setText(String.valueOf(receitaCategoria.get(position)));
+        holder.observacao.setText(String.valueOf(receitaOBS.get(position)));
 
-        holder.observacao.setText(receitas.getObservacao());
-        holder.valor.setText(receitas.getValor());
-        holder.data.setText(receitas.getData());
-        holder.tipo.setText(receitas.getTipo());
+
 
     }
 
     @Override
     public int getItemCount() {
-        return receitaLista.size();
+        return 5;
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder{

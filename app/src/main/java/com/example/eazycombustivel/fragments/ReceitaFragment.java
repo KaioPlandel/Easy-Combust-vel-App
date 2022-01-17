@@ -1,34 +1,31 @@
 package com.example.eazycombustivel.fragments;
 
-import android.content.Intent;
+
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.DividerItemDecoration;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
+
 
 import android.view.LayoutInflater;
 import android.view.View;
+
 import android.view.ViewGroup;
-import android.widget.Adapter;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
-import android.widget.CalendarView;
+
 import android.widget.EditText;
-import android.widget.LinearLayout;
+
+import android.widget.Toast;
 
 import com.example.eazycombustivel.Helper.DateCustom;
-import com.example.eazycombustivel.Helper.Receita;
+
 import com.example.eazycombustivel.R;
-import com.example.eazycombustivel.activity.ReceitaEDespesaActivity;
-import com.example.eazycombustivel.adapter.AdapterReceita;
-import com.google.android.material.datepicker.MaterialDatePicker;
+
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.textfield.TextInputLayout;
 
 import java.util.ArrayList;
-import java.util.List;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -43,10 +40,8 @@ public class ReceitaFragment extends Fragment {
    private ArrayAdapter<String> arrayAdapter;
    private EditText textValor,editData,observacao;
    private FloatingActionButton floating_action_button;
-   private Receita receita;
-   private RecyclerView recycleViewReceita;
-   private AdapterReceita adapterReceita;
-   private List<Receita> listaReceitas = new ArrayList<>();
+
+
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -91,6 +86,7 @@ public class ReceitaFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_receita, container, false);
 
@@ -101,44 +97,11 @@ public class ReceitaFragment extends Fragment {
         textValor = view.findViewById(R.id.textValor);
         editData = view.findViewById(R.id.editData);
         editData.setText(DateCustom.dataAtual());
-        recycleViewReceita = view.findViewById(R.id.recycleViewReceita);
-
-
-
-        criarReceitas();
-
 
         floating_action_button =  view.findViewById(R.id.floating_action_button);
-        floating_action_button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                String textoValor = textValor.getText().toString();
-                String textoOpcao = texto2.getText().toString();
-                String textoData = editData.getText().toString();
-                String textoObservacao = observacao.getText().toString();
-
-                receita = new Receita(textoValor,textoData,textoOpcao,textoObservacao);
-
-                //cria a receita e envia para a activity
-                Intent intent = new Intent(getActivity(), ReceitaEDespesaActivity.class);
-                intent.putExtra("Receitas",receita);
-                startActivity(intent);
-
-            }
-        });
 
 
-        //criar com.example.eazycombustivel.adapter
 
-        adapterReceita = new AdapterReceita(this.listaReceitas);
-
-        //Criar RecyclerView
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
-        recycleViewReceita.setLayoutManager(layoutManager);
-        recycleViewReceita.setHasFixedSize(true);
-        recycleViewReceita.addItemDecoration(new DividerItemDecoration(getContext(),LinearLayout.VERTICAL));
-        recycleViewReceita.setAdapter(adapterReceita);
 
         //gera a lista de opçoes de receita
         listaReceita = new ArrayList<>();
@@ -154,18 +117,35 @@ public class ReceitaFragment extends Fragment {
 
         texto2.setThreshold(1);
 
+
         return view;
     }
 
-    public void criarReceitas(){
-        receita = new Receita("R$20,00","14/01/2020","Entrega Aplicativo","");
-        listaReceitas.add(receita);
-        receita = new Receita("35,00","13/01/2020","Entrega Particular","loja nova");
-        listaReceitas.add(receita);
-        receita = new Receita("10","01/02/2020","Outros","");
-        listaReceitas.add(receita);
-        receita = new Receita("25,00","14/01/2020","Entrega Aplicativo","");
-        listaReceitas.add(receita);
+
+
+    public boolean camposAnalizados(){
+        String textoValor = textValor.getText().toString();
+        String textoOpcao = texto2.getText().toString();
+        String textoData = editData.getText().toString();
+        String textoObservacao = observacao.getText().toString();
+
+        if(!textoValor.isEmpty()){
+            if(!textoOpcao.isEmpty()){
+                if(!textoData.isEmpty()){
+                    return true;
+                }else{
+                    Toast.makeText(getContext(), "Defina uma data", Toast.LENGTH_SHORT).show();
+                    return false;
+                }
+            }else{
+                Toast.makeText(getContext(), "Escolha uma Opção", Toast.LENGTH_SHORT).show();
+                return false;
+            }
+        }else{
+            Toast.makeText(getContext(), "Digite um Valor", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
     }
 
 

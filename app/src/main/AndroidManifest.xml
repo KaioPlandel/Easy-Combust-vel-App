@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.eazycombustivel">
+    package="com.example.eazycombustivel"
+    >
 
     <application
         android:allowBackup="true"
@@ -10,26 +11,28 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.EazyCombustivel">
         <activity
+            android:name=".activity.DadoSalvoActivity"
+            android:exported="false" />
+        <activity
             android:name=".activity.CustoXTrajetoActivity"
             android:exported="false"
-            android:screenOrientation="portrait"
-            />
+            android:screenOrientation="portrait" />
         <activity
             android:name=".activity.QuantidadeLitrosActivity"
             android:exported="false"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".activity.AlcoolXGasolinaActivity"
             android:exported="false"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".activity.MediaKmLitroActivity"
             android:exported="false"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".activity.ReceitaEDespesaActivity"
             android:exported="false"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".activity.MainActivity"
             android:exported="true"
