@@ -12,6 +12,7 @@ import android.view.View;
 import com.example.eazycombustivel.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+
 public class MainActivity extends AppCompatActivity {
 
     private FloatingActionButton buttonAddCombustivel;
@@ -28,17 +29,19 @@ public class MainActivity extends AppCompatActivity {
         buttonQuantidadeLitro = findViewById(R.id.litrosGasto);
         buttonCustoPercurso = findViewById(R.id.buttonCustoPercurso);
 
-        buttonAddCombustivel = findViewById(R.id.buttonaddCombustivel);
+       // buttonAddCombustivel = findViewById(R.id.buttonaddCombustivel);
         // buttonSave = findViewById(R.id.buttonSave);
+
+
 
         // QUANDO CLICAR NO BOTAO VAI PRA TELA DE ADD DESPESA
 
-        buttonAddCombustivel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                goToAddDespesa();
-            }
-        });
+//        buttonAddCombustivel.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                goToAddDespesa();
+//            }
+//        });
         buttonQuantidadeLitro.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
