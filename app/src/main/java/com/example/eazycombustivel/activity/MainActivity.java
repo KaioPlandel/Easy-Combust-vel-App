@@ -7,6 +7,7 @@ import androidx.fragment.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.LinearLayout;
 
 
 import com.example.eazycombustivel.R;
@@ -16,7 +17,10 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 public class MainActivity extends AppCompatActivity {
 
     private FloatingActionButton buttonAddCombustivel;
-    ConstraintLayout buttonCalculoKmLitro, buttonAlcoolXGasolina, buttonQuantidadeLitro, buttonCustoPercurso;
+   private ConstraintLayout buttonCalculoKmLitro, buttonAlcoolXGasolina, buttonQuantidadeLitro, buttonCustoPercurso;
+   private com.github.clans.fab.FloatingActionButton addReceita,addDespesa;
+   private LinearLayout menuRelatorio;
+
 
 
     @Override
@@ -28,20 +32,44 @@ public class MainActivity extends AppCompatActivity {
         buttonAlcoolXGasolina = findViewById(R.id.buttonalcoolXGasolina);
         buttonQuantidadeLitro = findViewById(R.id.litrosGasto);
         buttonCustoPercurso = findViewById(R.id.buttonCustoPercurso);
+        addReceita = findViewById(R.id.addReceita);
+        addDespesa = findViewById(R.id.addDespesa);
+        menuRelatorio = findViewById(R.id.menuRelatorio);
 
-       // buttonAddCombustivel = findViewById(R.id.buttonaddCombustivel);
-        // buttonSave = findViewById(R.id.buttonSave);
 
 
 
-        // QUANDO CLICAR NO BOTAO VAI PRA TELA DE ADD DESPESA
 
-//        buttonAddCombustivel.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                goToAddDespesa();
-//            }
-//        });
+
+
+
+
+
+        menuRelatorio.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, RelatorioActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        addDespesa.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, DespesaActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        addReceita.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, ReceitaActivity.class);
+                startActivity(intent);
+            }
+        });
+
+
         buttonQuantidadeLitro.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -76,11 +104,6 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-    }
-
-
-    public void goToAddDespesa() {
-        startActivity(new Intent(getApplicationContext(), ReceitaEDespesaActivity.class));
     }
 
 }

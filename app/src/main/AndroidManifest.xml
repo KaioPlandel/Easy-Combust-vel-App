@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.eazycombustivel"
-    >
+    package="com.example.eazycombustivel">
 
     <application
         android:allowBackup="true"
@@ -10,6 +9,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.EazyCombustivel">
+        <activity
+            android:name=".activity.RelatorioActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.DespesaActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.ReceitaActivity"
+            android:exported="false" />
         <activity
             android:name=".activity.DadoSalvoActivity"
             android:exported="false" />

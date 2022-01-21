@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:background="#0E1822"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginTop="15dp"
+        android:layout_marginHorizontal="15dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/textCateg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Entrega vitoria"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:layout_marginHorizontal="15dp"
+            android:layout_weight="1"
+            android:textStyle="italic"
+            />
+
+
+
+        <TextView
+            android:id="@+id/textTipo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Receita"
+            android:textColor="@color/icone_color"
+            android:textSize="20sp"
+            android:layout_marginRight="8dp"
+            android:gravity="center_horizontal"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/textCategoria"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginHorizontal="15dp"
+        android:orientation="horizontal">
+
+
+        <TextView
+            android:id="@+id/textData"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="29/02/2021"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:layout_weight="1"
+            android:textStyle="italic"
+            android:drawableLeft="@drawable/ic_baseline_calendar_month_24"
+            android:layout_margin="10dp"/>
+
+
+
+
+
+
+
+
+
+        <TextView
+            android:id="@+id/textPreco"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="450,00"
+            android:textSize="18sp"
+            android:textColor="@color/icone_color"
+            android:drawableLeft="@drawable/ic_baseline_attach_money_24_cor"
+            android:layout_margin="10dp"/>
+
+    </LinearLayout>
+    <TextView
+        android:id="@+id/textObs"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="informações sobre as entregas"
+        android:textSize="14dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginLeft="25dp"
+        android:textStyle="italic"
+        android:textColor="@color/white"
+        android:drawableLeft="@drawable/ic_baseline_mark_unread_chat_alt_24_white"
+        />
+</LinearLayout>

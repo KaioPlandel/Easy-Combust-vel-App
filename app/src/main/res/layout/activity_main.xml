@@ -40,6 +40,7 @@
 
 
         <LinearLayout
+            android:id="@+id/menuRelatorio"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
@@ -289,7 +290,7 @@
             fab:menu_showShadow="true">
 
             <com.github.clans.fab.FloatingActionButton
-                android:id="@+id/menu_item"
+                android:id="@+id/addDespesa"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_baseline_attach_money_22"
@@ -297,7 +298,7 @@
                 fab:fab_size="mini" />
 
             <com.github.clans.fab.FloatingActionButton
-                android:id="@+id/menu_item2"
+                android:id="@+id/addReceita"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:fab_label="Adicionar Receita"
