@@ -47,12 +47,43 @@ public class TicketDAO implements ITicket{
 
     @Override
     public boolean atualizar(Ticket ticket) {
-        return false;
+
+        try{
+            ContentValues cv = new ContentValues();
+            cv.put("valor",ticket.getValor());
+            cv.put("data",ticket.getData());
+            cv.put("categoria",ticket.getCategoria());
+            cv.put("observacao",ticket.getObservacao());
+            cv.put("tipo",ticket.getTipo());
+            Log.i("TAG", "Atualizado com sucesso");
+
+            String[] args = {ticket.getId().toString()};
+            escreve.update(DbHelper.NOME_TABLE,cv,"id=?",args);
+        }catch (Exception e){
+            Log.i("TAG", "Erro ao Atualizar " + e.getMessage());
+            return false;
+        }
+
+        return true;
     }
 
     @Override
     public boolean deletar(Ticket ticket) {
-        return false;
+
+        try{
+
+            String[] args = {ticket.getId().toString()};
+            escreve.delete(DbHelper.NOME_TABLE,"id=?",args);
+            Log.i("TAG", "Apagado com sucesso");
+
+        }catch (Exception e){
+            Log.i("TAG", "Erro ao apagar " + e.getMessage());
+            return false;
+        }
+
+
+
+        return true;
     }
 
     @Override
@@ -81,10 +112,8 @@ public class TicketDAO implements ITicket{
             ticket.setObservacao(observacao);
             ticket.setTipo(tipo);
 
-
-
-
             tickets.add(ticket);
+
 
         }
 

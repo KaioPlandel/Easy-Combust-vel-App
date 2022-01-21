@@ -1,11 +1,13 @@
 package com.example.eazycombustivel.activity;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.ContentValues;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -28,6 +30,7 @@ public class RelatorioActivity extends AppCompatActivity {
     private RecyclerView recycleViewRelatorio;
     private AdapterRelatorio adapterRelatorio;
     private List<Ticket> listaTicket = new ArrayList<>();
+    private Ticket ticketSelecionado;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,28 +48,51 @@ public class RelatorioActivity extends AppCompatActivity {
                         new RecyclerItemClickListener.OnItemClickListener() {
                             @Override
                             public void onItemClick(View view, int position) {
+
+
                                 //Recuperar valor
                                 Ticket ticketSelecionado = listaTicket.get(position);
                                 String tipo = ticketSelecionado.getTipo();
 
-                                if(tipo.equals("Receita")){
+                                if (tipo.equals("Receita")) {
                                     //Envia para a tela de origem
-                                    Intent intent = new Intent(RelatorioActivity.this,ReceitaActivity.class );
-                                    intent.putExtra("ticketSelecionado",ticketSelecionado);
+                                    Intent intent = new Intent(RelatorioActivity.this, ReceitaActivity.class);
+                                    intent.putExtra("ticketSelecionado", ticketSelecionado);
                                     startActivity(intent);
 
                                 }
 
 
-
-
-
-                                }
+                            }
 
                             @Override
                             public void onLongItemClick(View view, int position) {
-                                Toast.makeText(getApplicationContext(), "Clique Longo", Toast.LENGTH_SHORT).show();
 
+                                //Recuperar Ticket
+                                ticketSelecionado = listaTicket.get(position);
+
+
+                                //Configurar Dialog
+                                AlertDialog.Builder dialog = new AlertDialog.Builder(RelatorioActivity.this);
+                                dialog.setTitle("Apagar lançamento");
+                                dialog.setMessage("Tem certeza que deseja apagar este lançamento?");
+                                dialog.setPositiveButton("Sim", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        TicketDAO ticketDAO = new TicketDAO(getApplicationContext());
+                                        if (ticketDAO.deletar(ticketSelecionado)) {
+                                            carregarListaReceita();
+                                            Toast.makeText(getApplicationContext(), "Lançamento apagado", Toast.LENGTH_SHORT).show();
+                                        } else {
+                                            Toast.makeText(getApplicationContext(), "Erro ao apagar lançamento", Toast.LENGTH_SHORT).show();
+                                        }
+
+                                    }
+                                });
+                                dialog.setNegativeButton("Não", null);
+
+                                dialog.create();
+                                dialog.show();
                             }
 
                             @Override
@@ -85,13 +111,11 @@ public class RelatorioActivity extends AppCompatActivity {
         carregarListaReceita();
     }
 
-    public void carregarListaReceita(){
+    public void carregarListaReceita() {
 
         //listar Receitas
         TicketDAO ticketDAO = new TicketDAO(getApplicationContext());
         listaTicket = ticketDAO.listar();
-
-
 
 
         //Configurar um adapter

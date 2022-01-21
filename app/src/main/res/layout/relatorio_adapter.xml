@@ -20,7 +20,7 @@
             android:layout_height="wrap_content"
             android:text="Entrega vitoria"
             android:textColor="@color/white"
-            android:textSize="20sp"
+            android:textSize="22sp"
             android:layout_marginHorizontal="15dp"
             android:layout_weight="1"
             android:textStyle="italic"
@@ -58,7 +58,7 @@
             android:textSize="16sp"
             android:layout_weight="1"
             android:textStyle="italic"
-            android:drawableLeft="@drawable/ic_baseline_calendar_month_24"
+            android:drawableLeft="@drawable/ic_baseline_calendar_today_25"
             android:layout_margin="10dp"/>
 
 
@@ -75,8 +75,8 @@
             android:layout_height="wrap_content"
             android:text="450,00"
             android:textSize="18sp"
-            android:textColor="@color/icone_color"
-            android:drawableLeft="@drawable/ic_baseline_attach_money_24_cor"
+            android:textColor="@color/white"
+            android:drawableLeft="@drawable/ic_baseline_attach_money_22"
             android:layout_margin="10dp"/>
 
     </LinearLayout>
@@ -86,10 +86,8 @@
         android:layout_height="wrap_content"
         android:text="informações sobre as entregas"
         android:textSize="14dp"
-        android:layout_marginTop="8dp"
         android:layout_marginLeft="25dp"
         android:textStyle="italic"
         android:textColor="@color/white"
-        android:drawableLeft="@drawable/ic_baseline_mark_unread_chat_alt_24_white"
         />
 </LinearLayout>
