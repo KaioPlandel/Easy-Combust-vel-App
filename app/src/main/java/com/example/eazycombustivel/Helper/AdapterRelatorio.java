@@ -1,4 +1,4 @@
-package com.example.eazycombustivel;
+package com.example.eazycombustivel.Helper;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,17 +8,18 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.eazycombustivel.model.Ticket;
+import com.example.eazycombustivel.R;
+import com.example.eazycombustivel.model.Receita;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class AdapterRelatorio extends RecyclerView.Adapter<AdapterRelatorio.MyViewHolder> {
 
-    private List<Ticket> listaTicket;
+    List<Receita> listaReceita = new ArrayList<>();
 
-    public AdapterRelatorio(List<Ticket> lista) {
-        this.listaTicket = lista;
-
+    public AdapterRelatorio(List<Receita> lista) {
+        this.listaReceita = lista;
     }
 
     @NonNull
@@ -31,19 +32,18 @@ public class AdapterRelatorio extends RecyclerView.Adapter<AdapterRelatorio.MyVi
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        Ticket ticket1 = listaTicket.get(position);
-        holder.valor.setText(ticket1.getValor());
-        holder.categoria.setText(ticket1.getCategoria());
-        holder.observacao.setText(ticket1.getObservacao());
-        holder.data.setText(ticket1.getData());
-        holder.tipo.setText(ticket1.getTipo());
 
+        Receita receita = listaReceita.get(position);
 
+        holder.valor.setText(String.valueOf(receita.getValor()));
+        holder.categoria.setText(receita.getCategoria());
+        holder.observacao.setText(receita.getObservacao());
+        holder.data.setText(receita.getData());
     }
 
     @Override
     public int getItemCount() {
-        return listaTicket.size();
+        return listaReceita.size();
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder{
@@ -52,7 +52,6 @@ public class AdapterRelatorio extends RecyclerView.Adapter<AdapterRelatorio.MyVi
         TextView valor;
         TextView categoria;
         TextView observacao;
-        TextView tipo;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -60,8 +59,6 @@ public class AdapterRelatorio extends RecyclerView.Adapter<AdapterRelatorio.MyVi
             valor =itemView.findViewById(R.id.textPreco);
             categoria =itemView.findViewById(R.id.textCateg);
             observacao =itemView.findViewById(R.id.textObs);
-            tipo = itemView.findViewById(R.id.textTipo);
-
         }
     }
 }

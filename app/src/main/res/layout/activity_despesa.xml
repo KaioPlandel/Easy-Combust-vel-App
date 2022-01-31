@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".activity.DespesaActivity">
+    tools:context=".view.DespesaActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -14,22 +14,21 @@
         android:background="#EC1031"
         android:orientation="vertical">
 
-        <EditText
+        <com.blackcat.currencyedittext.CurrencyEditText
+            android:id="@+id/textValorDespesa"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:hint="R$ 00,00"
-            android:textColorHint="@color/black"
             android:inputType="numberDecimal"
             android:textSize="60sp"
             android:gravity="center"
-            android:background="@android:color/transparent"/>
+            android:background="@android:color/transparent"
+            />
 
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
         android:background="@color/white"
         android:orientation="vertical">
 

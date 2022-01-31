@@ -1,4 +1,4 @@
-package com.example.eazycombustivel.activity;
+package com.example.eazycombustivel.view;
 
 import androidx.appcompat.app.AppCompatActivity;
 

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.eazycombustivel">
+    package="com.example.eazycombustivel"
+    >
 
     <application
         android:allowBackup="true"
@@ -10,39 +11,33 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.EazyCombustivel">
         <activity
-            android:name=".activity.RelatorioActivity"
+            android:name=".view.RelatorioActivity"
             android:exported="false" />
         <activity
-            android:name=".activity.DespesaActivity"
+            android:name=".view.DespesaActivity"
             android:exported="false" />
         <activity
-            android:name=".activity.ReceitaActivity"
-            android:exported="false" />
+            android:name=".view.ReceitaActivity"
+            android:exported="false"
+            />
         <activity
-            android:name=".activity.DadoSalvoActivity"
-            android:exported="false" />
-        <activity
-            android:name=".activity.CustoXTrajetoActivity"
+            android:name=".view.CustoXTrajetoActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.QuantidadeLitrosActivity"
+            android:name=".view.QuantidadeLitrosActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.AlcoolXGasolinaActivity"
+            android:name=".view.AlcoolXGasolinaActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.MediaKmLitroActivity"
+            android:name=".view.MediaKmLitroActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.ReceitaEDespesaActivity"
-            android:exported="false"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".activity.MainActivity"
+            android:name=".view.MainActivity"
             android:exported="true"
             android:screenOrientation="portrait">
             <intent-filter>

@@ -1,27 +1,30 @@
-package com.example.eazycombustivel.activity;
+package com.example.eazycombustivel.view;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 
+import com.blackcat.currencyedittext.CurrencyEditText;
 import com.example.eazycombustivel.R;
+import com.example.eazycombustivel.controller.ReceitaController;
+import com.example.eazycombustivel.model.Receita;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 
 public class MainActivity extends AppCompatActivity {
 
     private FloatingActionButton buttonAddCombustivel;
-   private ConstraintLayout buttonCalculoKmLitro, buttonAlcoolXGasolina, buttonQuantidadeLitro, buttonCustoPercurso;
-   private com.github.clans.fab.FloatingActionButton addReceita,addDespesa;
-   private LinearLayout menuRelatorio;
-
-
+    private ConstraintLayout buttonCalculoKmLitro, buttonAlcoolXGasolina, buttonQuantidadeLitro, buttonCustoPercurso;
+    private com.github.clans.fab.FloatingActionButton addReceita, addDespesa;
+    private LinearLayout menuRelatorio;
+    private ReceitaController receitaController;
+    private TextView editTotalGanho;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,12 +38,9 @@ public class MainActivity extends AppCompatActivity {
         addReceita = findViewById(R.id.addReceita);
         addDespesa = findViewById(R.id.addDespesa);
         menuRelatorio = findViewById(R.id.menuRelatorio);
+        editTotalGanho = findViewById(R.id.textoTotalGanho);
 
-
-
-
-
-
+        receitaController = new ReceitaController(getApplicationContext());
 
 
 
@@ -106,6 +106,14 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        int totalReceita = receitaController.somar();
+
+        editTotalGanho.setText(String.valueOf("Receita: R$ " + totalReceita));
+    }
 }
 
 

@@ -42,4 +42,7 @@ dependencies {
     implementation'com.ogaclejapan.smarttablayout:library:2.0.0@aar'
 
     implementation 'com.github.clans:fab:1.6.4'
+    //mascara de moeda
+    implementation 'com.github.BlacKCaT27:CurrencyEditText:2.0.2'
+
 }
