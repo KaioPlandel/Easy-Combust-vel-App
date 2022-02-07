@@ -40,6 +40,7 @@ public class ReceitaRelatorioFragment extends Fragment {
     private AdapterRelatorio adapterRelatorio;
     private ReceitaDAO receitaDAO;
     private DespesaDAO despesaDAO;
+    private List<Receita> listaReceita = new ArrayList<>();
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -94,15 +95,6 @@ public class ReceitaRelatorioFragment extends Fragment {
         recycleViewRelatorio = view.findViewById(R.id.recycleViewRelatorio);
 
 
-        //criar adapter
-        adapterRelatorio = new AdapterRelatorio(listar());
-
-
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
-        recycleViewRelatorio.setHasFixedSize(true);
-        recycleViewRelatorio.addItemDecoration(new DividerItemDecoration(getActivity(), LinearLayout.VERTICAL));
-        recycleViewRelatorio.setLayoutManager(layoutManager);
-        recycleViewRelatorio.setAdapter(adapterRelatorio);
 
         recycleViewRelatorio.addOnItemTouchListener(new RecyclerItemClickListener(getActivity(), recycleViewRelatorio, new RecyclerItemClickListener.OnItemClickListener() {
             @Override
@@ -122,7 +114,11 @@ public class ReceitaRelatorioFragment extends Fragment {
                         .setPositiveButton("Sim", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                receitaDAO.deletar(receitaSelecionada);
+
+                                if(receitaDAO.deletar(receitaSelecionada)){
+                                    Toast.makeText(getActivity(),"Sucesso ao deletar",Toast.LENGTH_SHORT).show();
+                                   listar();
+                                }
                             }
                         }).setNegativeButton("Não",null);
 
@@ -140,8 +136,23 @@ public class ReceitaRelatorioFragment extends Fragment {
 
     }
 
-    private List<Receita> listar(){
-        return receitaDAO.listar();
+    private void listar(){
+
+        receitaDAO.listar();
+        listaReceita = receitaDAO.listar();
+
+        //criar adapter
+        adapterRelatorio = new AdapterRelatorio(listaReceita);
+
+
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
+        recycleViewRelatorio.setHasFixedSize(true);
+        recycleViewRelatorio.addItemDecoration(new DividerItemDecoration(getActivity(), LinearLayout.VERTICAL));
+        recycleViewRelatorio.setLayoutManager(layoutManager);
+        recycleViewRelatorio.setAdapter(adapterRelatorio);
+
+        
+
     }
 
 
