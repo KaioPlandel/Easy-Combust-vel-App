@@ -83,10 +83,10 @@ public class CustoXTrajetoActivity extends AppCompatActivity {
                   double valorAGastar = quantidadeLitrosNecessaria * valorLitro;
 
 
-                    String quantidadeLitrosFormat = new DecimalFormat("#.0").format(quantidadeLitrosNecessaria);
-                    String valorFormatado = new DecimalFormat("#.0").format(valorAGastar);
+                    String quantidadeLitrosFormat = new DecimalFormat("0.0").format(quantidadeLitrosNecessaria);
+                    String valorFormatado = new DecimalFormat("0.00").format(valorAGastar);
 
-                    textTitulo.setText("Valor Total a Gastar é R$" + valorFormatado + " Sera necessário "+ quantidadeLitrosFormat  + " Litros ");
+                    textTitulo.setText("Valor Total a Gastar é R$ " + valorFormatado + " Sera necessário "+ quantidadeLitrosFormat  + " Litros ");
                 }
 
             }

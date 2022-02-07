@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#E6EE9C"
+    android:background="@color/backgroud"
     tools:context=".view.AlcoolXGasolinaActivity">
 
 
@@ -39,7 +39,7 @@
             android:layout_height="match_parent"
             android:layout_marginHorizontal="30dp"
             android:gravity="center"
-            android:text="Use os campos abaixo para efetuar o calculo e descubra qual combustivél sera mais econômico para você."
+            android:text="Use os campos abaixo para efetuar o cálculo e descubra qual combustivél será mais econômico para você."
             android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
@@ -65,7 +65,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="50dp"
-            android:hint="Valor Gasolina"
+            android:hint="Valor Litro Gasolina"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -87,7 +87,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="18dp"
-            android:hint="Valor Álcool"
+            android:hint="Valor Litro Álcool"
             android:inputType="numberDecimal"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -100,6 +100,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="numberDecimal" />
+
 
         </com.google.android.material.textfield.TextInputLayout>
 

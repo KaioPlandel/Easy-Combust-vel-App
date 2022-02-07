@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
-    android:background="#C1EA46"
+    android:background="#E53935"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
-
+    android:layout_height="wrap_content"
+    >
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -15,7 +16,7 @@
         android:orientation="horizontal">
 
         <TextView
-            android:id="@+id/textCateg"
+            android:id="@+id/textCategDespesa"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Entrega vitoria"
@@ -32,7 +33,7 @@
             android:id="@+id/textTipo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Receita"
+            android:text="Despesa"
             android:textColor="@color/backgroud"
             android:textSize="20sp"
             android:layout_marginRight="8dp"
@@ -41,7 +42,7 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/textCategoria"
+        android:id="@+id/textCategoriaDespesa"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
@@ -50,7 +51,7 @@
 
 
         <TextView
-            android:id="@+id/textData"
+            android:id="@+id/textDataDespesa"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="29/02/2021"
@@ -63,15 +64,8 @@
             android:layout_margin="10dp"/>
 
 
-
-
-
-
-
-
-
         <TextView
-            android:id="@+id/textPreco"
+            android:id="@+id/textPrecoDespesa"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="450,00"
@@ -81,7 +75,7 @@
 
     </LinearLayout>
     <TextView
-        android:id="@+id/textObs"
+        android:id="@+id/textObsDespesa"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="informações sobre as entregas"
@@ -91,4 +85,5 @@
         android:textStyle="italic"
         android:textColor="@color/backgroud"
         />
+
 </LinearLayout>

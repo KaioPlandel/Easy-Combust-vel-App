@@ -10,4 +10,11 @@ public class DateCustom {
         return dataString;
 
     }
+
+    public static String getMesAnoAtual(){
+
+        String mes = "022022";
+        return mes;
+    }
+
 }

@@ -6,6 +6,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
@@ -14,8 +15,8 @@ import android.widget.Toast;
 
 import com.blackcat.currencyedittext.CurrencyEditText;
 import com.example.eazycombustivel.Helper.DateCustom;
+import com.example.eazycombustivel.Helper.ReceitaDAO;
 import com.example.eazycombustivel.R;
-import com.example.eazycombustivel.controller.ReceitaController;
 import com.example.eazycombustivel.model.Receita;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.textfield.TextInputLayout;
@@ -31,14 +32,14 @@ public class ReceitaActivity extends AppCompatActivity {
     private EditText editData,observacao;
     private CurrencyEditText textValor;
     private FloatingActionButton floating_action_button;
-    ReceitaController receitaController;
+    private ReceitaDAO receitaDAO;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_receita);
 
-        receitaController = new ReceitaController(getApplicationContext());
+
 
         texto1 = findViewById(R.id.texto1);
         texto2 = findViewById(R.id.texto2);
@@ -53,39 +54,47 @@ public class ReceitaActivity extends AppCompatActivity {
         textValor.setLocale(locale);
         textValor.requestFocus();
 
+        receitaDAO = new ReceitaDAO(getApplicationContext());
+
 
         floating_action_button =  findViewById(R.id.buttonSalvarReceita);
 
-        //salvando os dados e enviando pra MainActivity
+        //salvando os dados
         floating_action_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(camposAnalizados()){
-                    Long campoValor = textValor.getRawValue();
-                    String textoValorS =  String.valueOf(campoValor);
+
+                    long campoValorLong = textValor.getRawValue();
+                    double valorDouble = Double.parseDouble(String.valueOf(campoValorLong));
+
+                   double campoValor = valorDouble / 100;
+                    Log.i("TAG", "onClick: " + campoValor);
+
 
 
                     String textoOpcao = texto2.getText().toString();
                     String textoData = editData.getText().toString();
                     String textoObservacao = observacao.getText().toString();
 
+                    String[] split = textoData.split("/");
+                    String mes = split[1];
+                    String ano = split[2];
+                    String mesAno = mes + ano;
+                    Log.i("TAG", "Mes e ano: " + mes + ano);
+
 
                     Receita receita = new Receita();
-                    receita.setValor(Integer.parseInt(textoValorS));
+                    receita.setValor(campoValor);
                     receita.setData(textoData);
+                    receita.setMesAno(mesAno);
                     receita.setCategoria(textoOpcao);
                     receita.setObservacao(textoObservacao);
 
-                    if(receitaController.incluir(receita)){
-                        Toast.makeText(getApplicationContext(),"Receita salva com sucesso!",Toast.LENGTH_SHORT).show();
+                    if(receitaDAO.salvar(receita)){
                         limparCampos();
-                    }else {
-                        Toast.makeText(getApplicationContext(),"Erro ao salvar",Toast.LENGTH_SHORT).show();
-
+                        Toast.makeText(getApplicationContext(), "Receita salva com sucesso!", Toast.LENGTH_SHORT).show();
                     }
-
-
-
 
 
                 }

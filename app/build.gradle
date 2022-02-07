@@ -37,12 +37,17 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
     //Optional: see how to use the utility.
-    implementation 'com.ogaclejapan.smarttablayout:utils-v4:2.0.0@aar'
     implementation 'com.google.android.material:material:1.5.0'
-    implementation'com.ogaclejapan.smarttablayout:library:2.0.0@aar'
 
+    // tabLayout
+    implementation'com.ogaclejapan.smarttablayout:library:2.0.0@aar'
+    implementation'com.ogaclejapan.smarttablayout:utils-v4:2.0.0@aar'
+    //floatButton
     implementation 'com.github.clans:fab:1.6.4'
     //mascara de moeda
     implementation 'com.github.BlacKCaT27:CurrencyEditText:2.0.2'
+
+    //calendar
+    implementation 'com.github.prolificinteractive:material-calendarview:2.0.1'
 
 }

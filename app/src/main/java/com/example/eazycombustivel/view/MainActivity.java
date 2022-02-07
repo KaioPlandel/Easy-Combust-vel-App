@@ -5,16 +5,24 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 
-import com.blackcat.currencyedittext.CurrencyEditText;
+import com.example.eazycombustivel.Helper.DateCustom;
+import com.example.eazycombustivel.Helper.DespesaDAO;
+import com.example.eazycombustivel.Helper.ReceitaDAO;
 import com.example.eazycombustivel.R;
-import com.example.eazycombustivel.controller.ReceitaController;
-import com.example.eazycombustivel.model.Receita;
+
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.prolificinteractive.materialcalendarview.CalendarDay;
+import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
+import com.prolificinteractive.materialcalendarview.OnMonthChangedListener;
+
+import java.text.NumberFormat;
+import java.util.Locale;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -23,9 +31,11 @@ public class MainActivity extends AppCompatActivity {
     private ConstraintLayout buttonCalculoKmLitro, buttonAlcoolXGasolina, buttonQuantidadeLitro, buttonCustoPercurso;
     private com.github.clans.fab.FloatingActionButton addReceita, addDespesa;
     private LinearLayout menuRelatorio;
-    private ReceitaController receitaController;
-    private TextView editTotalGanho;
-
+    private TextView editTotalGanho,editTotalDespesa,editSaldo;
+    private ReceitaDAO receitaDAO;
+    private DespesaDAO despesaDAO;
+    private MaterialCalendarView calendarView;
+    private String dataAtual;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,10 +49,34 @@ public class MainActivity extends AppCompatActivity {
         addDespesa = findViewById(R.id.addDespesa);
         menuRelatorio = findViewById(R.id.menuRelatorio);
         editTotalGanho = findViewById(R.id.textoTotalGanho);
+        editTotalDespesa = findViewById(R.id.editDespesa);
+        editSaldo = findViewById(R.id.editSaldo);
+        calendarView = findViewById(R.id.calendarView);
 
-        receitaController = new ReceitaController(getApplicationContext());
+
+        receitaDAO = new ReceitaDAO(getApplicationContext());
+        despesaDAO = new DespesaDAO(getApplicationContext());
+
+        String mes =  String.valueOf(calendarView.getCurrentDate().getMonth());
+        String ano = String.valueOf(calendarView.getCurrentDate().getYear());
+        dataAtual = 0+mes+ano;
 
 
+
+        CharSequence meses[] = {"Janeiro","Fevereiro","Março","Abril","Maio","Junho","Julho","Agosto","Setembro","Outubro","Novembro","Dezembro"};
+        calendarView.setTitleMonths(meses);
+
+        calendarView.setOnMonthChangedListener(new OnMonthChangedListener() {
+            @Override
+            public void onMonthChanged(MaterialCalendarView widget, CalendarDay date) {
+
+                String mes = String.valueOf(date.getMonth());
+                String ano = String.valueOf(date.getYear());
+                String mesAno = 0+mes+ano;
+
+                apresentarSaldo(mesAno);
+            }
+        });
 
 
         menuRelatorio.setOnClickListener(new View.OnClickListener() {
@@ -106,14 +140,31 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+
     @Override
     protected void onStart() {
         super.onStart();
-
-        int totalReceita = receitaController.somar();
-
-        editTotalGanho.setText(String.valueOf("Receita: R$ " + totalReceita));
+        apresentarSaldo(dataAtual);
     }
+
+    public void apresentarSaldo(String Atual){
+
+        Log.i("TAG", "onMonthChanged: " + Atual);
+
+        double totalReceita =receitaDAO.somarTotal(Atual);
+        Locale locale = new Locale("pt", "BR");
+        NumberFormat currencyFormatter = NumberFormat.getCurrencyInstance(locale);
+        editTotalGanho.setText(String.valueOf("Receita: " + currencyFormatter.format(totalReceita)));
+
+        double totalDespesa = despesaDAO.somarTotal(Atual);
+        editTotalDespesa.setText(String.valueOf("Despesa: " + currencyFormatter.format(totalDespesa)));
+
+        double totalSaldo = totalReceita - totalDespesa;
+        editSaldo.setText(String.valueOf("Saldo: " + currencyFormatter.format(totalSaldo)));
+
+    }
+
+
 }
 
 

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#E6EE9C"
+    android:background="@color/backgroud"
     tools:context=".view.CustoXTrajetoActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -60,7 +60,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="50dp"
-            android:hint="Km Por Litro"
+            android:hint="Média Consumo"
             app:startIconDrawable="@drawable/ic_baseline_edit_road_24"
             android:inputType="numberDecimal"
             app:layout_constraintEnd_toEndOf="parent"
@@ -81,7 +81,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="18dp"
-            android:hint="Total Km Percurso"
+            android:hint="Percuso Total (Km)"
             app:startIconDrawable="@drawable/ic_baseline_add_road_24"
             android:inputType="numberDecimal"
             app:layout_constraintEnd_toEndOf="parent"

@@ -55,7 +55,7 @@ public class QuantidadeLitrosActivity extends AppCompatActivity {
                     double valorPago = Double.parseDouble(textoValorPago);
 
                     Double resultadoCalculo = valorPago / valorCombustivelLitro;
-                    String valorFormatado = new DecimalFormat("#.00").format(resultadoCalculo);
+                    String valorFormatado = new DecimalFormat("0.0").format(resultadoCalculo);
 
 
 

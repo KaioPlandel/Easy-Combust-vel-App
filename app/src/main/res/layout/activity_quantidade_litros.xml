@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#E6EE9C"
+    android:background="@color/backgroud"
     tools:context=".view.QuantidadeLitrosActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -37,7 +37,7 @@
             android:layout_height="match_parent"
             android:layout_marginHorizontal="30dp"
             android:gravity="center"
-            android:text="Use os campos para calcular e descubra quantos litros vai dar com o valor pago."
+            android:text="Quantidade de litros pelo valor a pagar."
             android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
@@ -63,7 +63,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="50dp"
-            android:hint="Valor Pago"
+            android:hint="Valor a Pagar"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"

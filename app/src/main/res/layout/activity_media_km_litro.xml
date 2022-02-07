@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#E6EE9C"
+    android:background="@color/backgroud"
     tools:context=".view.MediaKmLitroActivity">
 
 
@@ -39,7 +39,7 @@
             android:layout_height="match_parent"
             android:layout_marginHorizontal="30dp"
             android:gravity="center"
-            android:text="Use os campos para calcular a média que seu veículo faz por litro"
+            android:text="Calcule o consumo do seu veículo (km/L)."
             android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
@@ -104,7 +104,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="18dp"
-            android:hint="Litros"
+            android:hint="Litros Abastecidos"
             app:startIconDrawable="@drawable/ic_baseline_water_drop_24"
             android:inputType="numberDecimal"
             app:layout_constraintEnd_toEndOf="parent"

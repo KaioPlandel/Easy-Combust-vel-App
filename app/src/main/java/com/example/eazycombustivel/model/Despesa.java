@@ -1,8 +1,7 @@
 package com.example.eazycombustivel.model;
 
-import java.io.Serializable;
+public class Despesa {
 
-public class Receita implements Serializable {
     private int id;
     private double valor;
     private String categoria;
@@ -10,15 +9,15 @@ public class Receita implements Serializable {
     private String observacao;
     private String mesAno;
 
-    public Receita() {
-    }
-
     public String getMesAno() {
         return mesAno;
     }
 
     public void setMesAno(String mesAno) {
         this.mesAno = mesAno;
+    }
+
+    public Despesa() {
     }
 
     public int getId() {
@@ -60,5 +59,4 @@ public class Receita implements Serializable {
     public void setObservacao(String observacao) {
         this.observacao = observacao;
     }
-
 }

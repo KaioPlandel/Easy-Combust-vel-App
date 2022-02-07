@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:fab="//fab"
-    android:background="#0E1822"
+    android:background="@color/backgroud"
     tools:context=".view.MainActivity">
 
     <ImageView
@@ -19,75 +20,65 @@
 
     <LinearLayout
         android:id="@+id/constraintLayout"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="200dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:gravity="center">
-
-            <ImageView
-                android:layout_width="170dp"
-                android:layout_height="150dp"
-                android:src="@drawable/logo1"/>
-
-
-        </LinearLayout>
-
-
-        <LinearLayout
             android:id="@+id/menuRelatorio"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <TextView
+            <com.prolificinteractive.materialcalendarview.MaterialCalendarView
+                android:id="@+id/calendarView"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:background="@drawable/blue_background"
-                android:gravity="center"
-                android:text="Saldo"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+                android:layout_height="50dp"
+                app:mcv_showOtherDates="all"
+                android:layout_marginTop="10dp"
+                app:mcv_selectionColor="#00F"
+                app:mcv_tileSize="55dp"
+
+                />
 
             <TextView
                 android:id="@+id/textoTotalGanho"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Ganhos : R$200,00"
+                android:layout_gravity="start"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginTop="15dp"
+                android:text="Ganhos:R$200,00"
+                android:gravity="center"
                 android:textColor="@color/icone_color"
-                android:gravity="center_horizontal"
-                android:layout_marginTop="10dp"
-                android:textAlignment="center"
-                android:layout_marginHorizontal="10dp"
-                android:textSize="20sp"/>
+                android:textSize="20sp" />
 
 
             <TextView
+                android:id="@+id/editDespesa"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Gastos : R$100,00"
+                android:layout_gravity="start"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginTop="10dp"
+                android:text="Despesa:"
+                android:gravity="center"
                 android:textColor="#E31D1D"
-                android:layout_marginHorizontal="10dp"
-                android:layout_marginTop="10dp"
-                android:textAlignment="center"
-                android:textSize="20sp"/>
+                android:textSize="20sp" />
 
             <TextView
+                android:id="@+id/editSaldo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Saldo : R$100,00"
-                android:textColor="@color/black"
-                android:textAlignment="center"
+                android:layout_gravity="start"
                 android:layout_marginHorizontal="10dp"
                 android:layout_marginTop="10dp"
-                android:textSize="20sp"/>
-
+                android:text="Saldo : R$100,00"
+                android:gravity="center"
+                android:textColor="@color/black"
+                android:textSize="20sp" />
 
 
         </LinearLayout>
@@ -117,14 +108,14 @@
 
             <ImageView
                 android:id="@+id/conGasOuAlco"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="100dp"
+                android:layout_height="90dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.228"
-                app:srcCompat="@drawable/ic_baseline_local_gas_station_90" />
+                app:srcCompat="@drawable/alcool" />
 
             <TextView
                 android:id="@+id/textAlcolOuGas"
@@ -147,7 +138,7 @@
             android:id="@+id/buttonCalculoKmLitro"
             android:layout_width="150dp"
             android:layout_height="150dp"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="28dp"
             android:background="@drawable/blue_background"
             app:layout_constraintEnd_toStartOf="@+id/buttonalcoolXGasolina"
             app:layout_constraintHorizontal_bias="0.5"
@@ -156,21 +147,21 @@
 
             <ImageView
                 android:id="@+id/imageLitro"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="100dp"
+                android:layout_height="90dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.228"
-                app:srcCompat="@drawable/ic_baseline_local_drink_90" />
+                app:srcCompat="@drawable/media" />
 
             <TextView
                 android:id="@+id/textKmLitro"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="Calculo Km por Litro"
+                android:text="Média de consumo"
                 android:textColor="@color/black"
                 android:textSize="18sp"
                 android:textStyle="bold"
@@ -193,14 +184,14 @@
 
             <ImageView
                 android:id="@+id/imagepercurso"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="100dp"
+                android:layout_height="90dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.228"
-                app:srcCompat="@drawable/ic_baseline_alt_route_24" />
+                app:srcCompat="@drawable/trajeto" />
 
             <TextView
                 android:id="@+id/textPercurso"
@@ -236,7 +227,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.228"
-                app:srcCompat="@drawable/ic_baseline_attach_money_24" />
+                app:srcCompat="@drawable/dinheiro" />
 
             <TextView
                 android:id="@+id/textLitroGasto"

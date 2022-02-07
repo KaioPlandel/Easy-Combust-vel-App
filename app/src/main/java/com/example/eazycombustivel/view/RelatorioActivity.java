@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager.widget.ViewPager;
 
 
 import android.os.Bundle;
@@ -12,19 +13,20 @@ import android.widget.LinearLayout;
 
 
 import com.example.eazycombustivel.Helper.AdapterRelatorio;
+import com.example.eazycombustivel.Helper.DespesaDAO;
+import com.example.eazycombustivel.Helper.ReceitaDAO;
 import com.example.eazycombustivel.R;
-import com.example.eazycombustivel.controller.ReceitaController;
+import com.example.eazycombustivel.model.Despesa;
 import com.example.eazycombustivel.model.Receita;
+import com.ogaclejapan.smarttablayout.SmartTabLayout;
+import com.ogaclejapan.smarttablayout.utils.v4.FragmentPagerItemAdapter;
+import com.ogaclejapan.smarttablayout.utils.v4.FragmentPagerItems;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class RelatorioActivity extends AppCompatActivity {
 
-    private List<Receita> lista = new ArrayList<>();
-    private RecyclerView recycleViewRelatorio;
-    private AdapterRelatorio adapterRelatorio;
-    private ReceitaController receitaController;
 
 
 
@@ -33,21 +35,29 @@ public class RelatorioActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_relatorio);
 
-        receitaController = new ReceitaController(getApplicationContext());
-        recycleViewRelatorio = findViewById(R.id.recycleViewRelatorio);
 
 
-        //criar adapter
-       adapterRelatorio = new AdapterRelatorio(receitaController.listar());
+        FragmentPagerItemAdapter adapter = new FragmentPagerItemAdapter(
+                getSupportFragmentManager(), FragmentPagerItems.with(this)
+                .add("Receita", ReceitaRelatorioFragment.class)
+                .add("Despesa", DespesaRelatorioFragment.class)
+                .create());
+
+        ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager);
+        viewPager.setAdapter(adapter);
+
+        SmartTabLayout viewPagerTab = (SmartTabLayout) findViewById(R.id.viewpagertab);
+        viewPagerTab.setViewPager(viewPager);
 
 
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
-        recycleViewRelatorio.setHasFixedSize(true);
-        recycleViewRelatorio.addItemDecoration(new DividerItemDecoration(getApplicationContext(), LinearLayout.VERTICAL));
-        recycleViewRelatorio.setLayoutManager(layoutManager);
-        recycleViewRelatorio.setAdapter(adapterRelatorio);
+
+
+
+
+
 
 
 
     }
+
 }

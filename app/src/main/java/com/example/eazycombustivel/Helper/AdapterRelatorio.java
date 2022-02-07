@@ -11,8 +11,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.eazycombustivel.R;
 import com.example.eazycombustivel.model.Receita;
 
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class AdapterRelatorio extends RecyclerView.Adapter<AdapterRelatorio.MyViewHolder> {
 
@@ -34,8 +36,10 @@ public class AdapterRelatorio extends RecyclerView.Adapter<AdapterRelatorio.MyVi
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
 
         Receita receita = listaReceita.get(position);
+        Locale locale = new Locale("pt", "BR");
+        NumberFormat currencyFormatter = NumberFormat.getCurrencyInstance(locale);
 
-        holder.valor.setText(String.valueOf(receita.getValor()));
+        holder.valor.setText(currencyFormatter.format(receita.getValor()));
         holder.categoria.setText(receita.getCategoria());
         holder.observacao.setText(receita.getObservacao());
         holder.data.setText(receita.getData());

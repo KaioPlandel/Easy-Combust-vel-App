@@ -14,7 +14,7 @@ import com.google.android.material.textfield.TextInputEditText;
 
 public class AlcoolXGasolinaActivity extends AppCompatActivity {
 
-  private   TextInputEditText editvalorGasolina,editValorAlcool;
+  private TextInputEditText editvalorGasolina,editValorAlcool;
    private Button calcular,apagar;
    private LinearLayout buttonVoltar;
    private TextView textTitulo;

@@ -94,7 +94,7 @@ public class MediaKmLitroActivity extends AppCompatActivity {
 
              double mediaKm = (valorFinal - valorInicial) / valorLitros;
 
-             String valorFormatado = new DecimalFormat("#.0").format(mediaKm);
+             String valorFormatado = new DecimalFormat("0.0").format(mediaKm);
 
              titulo.setText("Media: " + valorFormatado + " KM L");
 
