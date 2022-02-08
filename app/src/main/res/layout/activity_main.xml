@@ -5,9 +5,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:fab="//fab"
-    android:background="@color/backgroud"
+    xmlns:fab="http://fab"
+    android:background="@color/background"
     tools:context=".view.MainActivity">
+
+
 
     <ImageView
         android:id="@+id/imageView4"
@@ -17,6 +19,27 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView4"
+        app:layout_constraintEnd_toEndOf="@+id/imageView4"
+        app:layout_constraintHorizontal_bias="0.94"
+        app:layout_constraintStart_toStartOf="@+id/imageView4"
+        app:layout_constraintTop_toTopOf="@+id/imageView4"
+        app:layout_constraintVertical_bias="0.96">
+
+        <ImageView
+            android:id="@+id/buttonRelatorio"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:elevation="5dp"
+            android:src="@drawable/ic_baseline_autorenew_24" />
+
+    </LinearLayout>
+
 
     <LinearLayout
         android:id="@+id/constraintLayout"
@@ -52,7 +75,7 @@
                 android:layout_marginTop="15dp"
                 android:text="Ganhos:R$200,00"
                 android:gravity="center"
-                android:textColor="@color/icone_color"
+                android:textColor="@color/background"
                 android:textSize="20sp" />
 
 
@@ -65,7 +88,7 @@
                 android:layout_marginTop="10dp"
                 android:text="Despesa:"
                 android:gravity="center"
-                android:textColor="#E31D1D"
+                android:textColor="@color/background"
                 android:textSize="20sp" />
 
             <TextView
@@ -79,7 +102,6 @@
                 android:gravity="center"
                 android:textColor="@color/black"
                 android:textSize="20sp" />
-
 
         </LinearLayout>
     </LinearLayout>
@@ -101,7 +123,6 @@
             android:background="@drawable/blue_background"
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginTop="30dp"
-
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/buttonCalculoKmLitro"
             app:layout_constraintTop_toTopOf="parent">
@@ -125,7 +146,7 @@
                 android:gravity="center"
                 android:text="Álcool X Gasolina"
                 android:textColor="@color/black"
-                android:textSize="18sp"
+                android:textSize="16sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -163,7 +184,7 @@
                 android:gravity="center"
                 android:text="Média de consumo"
                 android:textColor="@color/black"
-                android:textSize="18sp"
+                android:textSize="16sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -200,7 +221,7 @@
                 android:gravity="center"
                 android:text="Custo X Trajeto"
                 android:textColor="@color/black"
-                android:textSize="18sp"
+                android:textSize="16sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -236,7 +257,7 @@
                 android:gravity="center"
                 android:text="Quantos litros vai dar"
                 android:textColor="@color/black"
-                android:textSize="18sp"
+                android:textSize="16sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

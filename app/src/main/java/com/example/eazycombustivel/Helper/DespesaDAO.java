@@ -48,19 +48,47 @@ public class DespesaDAO implements IDespesa{
 
     @Override
     public boolean atualizar(Despesa despesa) {
-        return false;
+
+        ContentValues cv = new ContentValues();
+        cv.put("valor",despesa.getValor());
+        cv.put("categoria",despesa.getCategoria());
+        cv.put("data",despesa.getData());
+        cv.put("mesAno",despesa.getMesAno());
+        cv.put("observacao",despesa.getObservacao());
+
+        try {
+            String[] args = {String.valueOf(despesa.getId())};
+            write.update(DBHelper.NAME_TABLE2,cv,"id=?",args);
+            Log.i("TAG", "atualizar: Sucesso");
+        }catch (Exception e){
+            Log.i("TAG", "atualizar: Erro" + e.getMessage());
+            return false;
+        }
+
+
+
+        return true;
     }
 
     @Override
     public boolean deletar(Despesa despesa) {
-        return false;
+
+        try {
+            String[] args = {String.valueOf(despesa.getId())};
+            write.delete(DBHelper.NAME_TABLE2,"id=?",args);
+        }catch (Exception e){
+            Log.i("TAG", "deletar:Erro "+ e.getMessage());
+            return false;
+        }
+
+        return true;
     }
 
     @Override
     public List<Despesa> listar() {
 
         List<Despesa> listaDespesa = new ArrayList<>();
-        String sql = "SELECT * FROM " + DBHelper.NAME_TABLE2 + " ;";
+        String sql = "SELECT * FROM " + DBHelper.NAME_TABLE2 + " ORDER BY id DESC;";
         Cursor cursor = read.rawQuery(sql,null);
 
         while (cursor.moveToNext()){
@@ -89,10 +117,15 @@ public class DespesaDAO implements IDespesa{
 
         double total = 0.0;
         String sql = "SELECT SUM(valor) FROM " + DBHelper.NAME_TABLE2 + " WHERE mesAno =" +"'"+ data + "'"+ ";";
+
         Cursor cursor = read.rawQuery(sql,null);
 
-        if(cursor.moveToFirst()){
-            total = cursor.getDouble(0);
+        try {
+            if(cursor.moveToFirst()){
+                total = cursor.getDouble(0);
+            }
+        }catch (Exception e){
+            e.printStackTrace();
         }
 
         return total;

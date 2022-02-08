@@ -1,6 +1,7 @@
 package com.example.eazycombustivel.view;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -33,6 +34,7 @@ public class ReceitaActivity extends AppCompatActivity {
     private CurrencyEditText textValor;
     private FloatingActionButton floating_action_button;
     private ReceitaDAO receitaDAO;
+    private Toolbar toolbarReceita;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +48,14 @@ public class ReceitaActivity extends AppCompatActivity {
         observacao = findViewById(R.id.OBS);
         textValor = findViewById(R.id.textValor);
         editData = findViewById(R.id.editData);
-        editData.setText("  " + DateCustom.dataAtual());
+        editData.setText(DateCustom.dataAtual());
+        toolbarReceita = findViewById(R.id.toolbarReceita);
+
+        //configurar toolbar
+        toolbarReceita.setTitle("Adicionar Receita");
+        toolbarReceita.setBackgroundColor(getResources().getColor(R.color.background));
+        toolbarReceita.setTitleTextColor(getResources().getColor(R.color.white));
+        setSupportActionBar(toolbarReceita);
 
         //focar no editText
         //Configurar localidade para pt. mascara moeda
@@ -59,42 +68,92 @@ public class ReceitaActivity extends AppCompatActivity {
 
         floating_action_button =  findViewById(R.id.buttonSalvarReceita);
 
+
+        Receita receitaSelecionada = (Receita) getIntent().getSerializableExtra("pacoteReceita");
+        if(receitaSelecionada != null){
+            textValor.setText(String.valueOf(receitaSelecionada.getValor() *10));
+            editData.setText(receitaSelecionada.getData());
+            observacao.setText(receitaSelecionada.getObservacao());
+        }
+
+
+
         //salvando os dados
         floating_action_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(camposAnalizados()){
 
-                    long campoValorLong = textValor.getRawValue();
-                    double valorDouble = Double.parseDouble(String.valueOf(campoValorLong));
+                    if(receitaSelecionada != null){//edição
 
-                   double campoValor = valorDouble / 100;
-                    Log.i("TAG", "onClick: " + campoValor);
+                        long campoValorLong = textValor.getRawValue();
+                        double valorDouble = Double.parseDouble(String.valueOf(campoValorLong));
+
+                        double campoValor = valorDouble / 100;
+                        Log.i("TAG", "onClick: " + campoValor);
+
+                        String textoOpcao = texto2.getText().toString();
+                        String textoData = editData.getText().toString();
+                        String textoObservacao = observacao.getText().toString();
+
+                        String[] split = textoData.split("/");
+                        String mes = split[1];
+                        String ano = split[2];
+                        String mesAno = mes + ano;
+                        Log.i("TAG", "Mes e ano: " + mes + ano);
+
+
+                        Receita receitaAtual = new Receita();
+                        receitaAtual.setId(receitaSelecionada.getId());
+                        receitaAtual.setValor(campoValor);
+                        receitaAtual.setData(textoData);
+                        receitaAtual.setMesAno(mesAno);
+                        receitaAtual.setCategoria(textoOpcao);
+                        receitaAtual.setObservacao(textoObservacao);
+
+                        if (receitaDAO.atualizar(receitaAtual)) {
+                            Toast.makeText(getApplicationContext(),"Receita atualizada com sucesso!",Toast.LENGTH_SHORT).show();
+                            finish();
+                        }
+
+                    }else {//Salvar
+
+                        long campoValorLong = textValor.getRawValue();
+                        double valorDouble = Double.parseDouble(String.valueOf(campoValorLong));
+
+                        double campoValor = valorDouble / 100;
+                        Log.i("TAG", "onClick: " + campoValor);
 
 
 
-                    String textoOpcao = texto2.getText().toString();
-                    String textoData = editData.getText().toString();
-                    String textoObservacao = observacao.getText().toString();
+                        String textoOpcao = texto2.getText().toString();
+                        String textoData = editData.getText().toString();
+                        String textoObservacao = observacao.getText().toString();
 
-                    String[] split = textoData.split("/");
-                    String mes = split[1];
-                    String ano = split[2];
-                    String mesAno = mes + ano;
-                    Log.i("TAG", "Mes e ano: " + mes + ano);
+                        String[] split = textoData.split("/");
+                        String mes = split[1];
+                        String ano = split[2];
+                        String mesAno = mes + ano;
+                        Log.i("TAG", "Mes e ano: " + mes + ano);
 
 
-                    Receita receita = new Receita();
-                    receita.setValor(campoValor);
-                    receita.setData(textoData);
-                    receita.setMesAno(mesAno);
-                    receita.setCategoria(textoOpcao);
-                    receita.setObservacao(textoObservacao);
+                        Receita receita = new Receita();
+                        receita.setValor(campoValor);
+                        receita.setData(textoData);
+                        receita.setMesAno(mesAno);
+                        receita.setCategoria(textoOpcao);
+                        receita.setObservacao(textoObservacao);
 
-                    if(receitaDAO.salvar(receita)){
-                        limparCampos();
-                        Toast.makeText(getApplicationContext(), "Receita salva com sucesso!", Toast.LENGTH_SHORT).show();
+                        if(receitaDAO.salvar(receita)){
+                            limparCampos();
+                            Toast.makeText(getApplicationContext(), "Receita salva com sucesso!", Toast.LENGTH_SHORT).show();
+                        }
+
+
+
                     }
+
+
 
 
                 }

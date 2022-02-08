@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/backgroud"
+    android:background="@color/background"
     tools:context=".view.CustoXTrajetoActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -60,7 +60,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="50dp"
-            android:hint="Média Consumo"
+            android:hint="Média Consumo (Km/L)"
             app:startIconDrawable="@drawable/ic_baseline_edit_road_24"
             android:inputType="numberDecimal"
             app:layout_constraintEnd_toEndOf="parent"

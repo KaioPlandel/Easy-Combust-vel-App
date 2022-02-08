@@ -1,6 +1,7 @@
 package com.example.eazycombustivel.view;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -32,7 +33,7 @@ public class DespesaActivity extends AppCompatActivity {
     private EditText editDataDespesa, editObsDespesa;
     private FloatingActionButton buttonEnviarDespesa;
     private DespesaDAO despesaDAO;
-
+    private Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +46,12 @@ public class DespesaActivity extends AppCompatActivity {
         textValorDespesa = findViewById(R.id.textValorDespesa);
         editObsDespesa = findViewById(R.id.editObsDespesa);
         buttonEnviarDespesa = findViewById(R.id.buttonEnviarDespesa);
+        toolbar = findViewById(R.id.toolbar);
+
+        toolbar.setTitle("Adicionar Despesa");
+        toolbar.setBackgroundColor(getResources().getColor(R.color.background));
+        toolbar.setTitleTextColor(getResources().getColor(R.color.white));
+        setSupportActionBar(toolbar);
 
         //Instanciar despesaDao
         despesaDAO = new DespesaDAO(getApplicationContext());
@@ -75,42 +82,107 @@ public class DespesaActivity extends AppCompatActivity {
         textListCategory.setThreshold(1);
 
 
+        //recuperar despesa caso edição
+       Despesa despesaSelecionada = (Despesa) getIntent().getSerializableExtra("pacoteDespesa");
+        if(despesaSelecionada != null){
+
+            textValorDespesa.setText(String.valueOf(despesaSelecionada.getValor() *10));
+            editDataDespesa.setText(despesaSelecionada.getData());
+            editObsDespesa.setText(despesaSelecionada.getObservacao());
+
+        }
+
+
         //salvando os dados onClick
         buttonEnviarDespesa.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 if(camposAnalizados()){
-                    long campoValorLong = textValorDespesa.getRawValue();
-                    double valorDouble = Double.parseDouble(String.valueOf(campoValorLong));
 
-                    double campoValor = valorDouble / 100;
-                    Log.i("TAG", "onClick: " + campoValor);
+                    if(despesaSelecionada != null){//atualizar
 
 
+                        long campoValorLong = textValorDespesa.getRawValue();
+                        double valorDouble = Double.parseDouble(String.valueOf(campoValorLong));
 
-                    String textoOpcao = textListCategory.getText().toString();
-                    String textoData = editDataDespesa.getText().toString();
-                    String[] split = textoData.split("/");
-                    String mes = split[1];
-                    String ano = split[2];
-                    String mesAno = mes + ano;
-
-                    Log.i("TAG", "Mes e ano: " + mes + ano);
-                    String textoObservacao = editObsDespesa.getText().toString();
+                        double campoValor = valorDouble / 100;
+                        Log.i("TAG", "onClick: " + campoValor);
 
 
-                    Despesa despesa = new Despesa();
-                    despesa.setValor(campoValor);
-                    despesa.setCategoria(textoOpcao);
-                    despesa.setData(textoData);
-                    despesa.setMesAno(mesAno);
-                    despesa.setObservacao(textoObservacao);
 
-                    if(despesaDAO.salvar(despesa)){
-                        limparCampos();
-                        Toast.makeText(getApplicationContext(), "Despesa salva com sucesso!", Toast.LENGTH_SHORT).show();
+                        String textoOpcao = textListCategory.getText().toString();
+                        String textoData = editDataDespesa.getText().toString();
+                        String[] split = textoData.split("/");
+                        String mes = split[1];
+                        String ano = split[2];
+                        String mesAno = mes + ano;
+
+                        Log.i("TAG", "Mes e ano: " + mes + ano);
+                        String textoObservacao = editObsDespesa.getText().toString();
+
+
+                        Despesa despesa = new Despesa();
+                        despesa.setValor(campoValor);
+                        despesa.setCategoria(textoOpcao);
+                        despesa.setData(textoData);
+                        despesa.setMesAno(mesAno);
+                        despesa.setObservacao(textoObservacao);
+
+
+                        Despesa despesaAtual = new Despesa();
+                        despesaAtual.setId(despesaSelecionada.getId());
+                        despesaAtual.setValor(campoValor);
+                        despesaAtual.setCategoria(textoOpcao);
+                        despesaAtual.setData(textoData);
+                        despesaAtual.setMesAno(mesAno);
+                        despesaAtual.setObservacao(textoObservacao);
+
+                        if(despesaDAO.atualizar(despesaAtual)){
+                            Toast.makeText(getApplicationContext(), "Despesa atualizada com sucesso!", Toast.LENGTH_SHORT).show();
+                            finish();
+                        }
+
+
+                    }else {//salvar
+
+                        long campoValorLong = textValorDespesa.getRawValue();
+                        double valorDouble = Double.parseDouble(String.valueOf(campoValorLong));
+
+                        double campoValor = valorDouble / 100;
+                        Log.i("TAG", "onClick: " + campoValor);
+
+
+
+                        String textoOpcao = textListCategory.getText().toString();
+                        String textoData = editDataDespesa.getText().toString();
+                        String[] split = textoData.split("/");
+                        String mes = split[1];
+                        String ano = split[2];
+                        String mesAno = mes + ano;
+
+                        Log.i("TAG", "Mes e ano: " + mes + ano);
+                        String textoObservacao = editObsDespesa.getText().toString();
+
+
+                        Despesa despesa = new Despesa();
+                        despesa.setValor(campoValor);
+                        despesa.setCategoria(textoOpcao);
+                        despesa.setData(textoData);
+                        despesa.setMesAno(mesAno);
+                        despesa.setObservacao(textoObservacao);
+
+                        if(despesaDAO.salvar(despesa)){
+                            limparCampos();
+                            Toast.makeText(getApplicationContext(), "Despesa salva com sucesso!", Toast.LENGTH_SHORT).show();
+                        }
+
+
+
+
                     }
+
+
                 }
 
 

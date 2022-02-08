@@ -8,10 +8,15 @@
     android:orientation="vertical"
     tools:context=".view.ReceitaActivity">
 
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolbarReceita"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="180dp"
-        android:background="#C1EA46"
+        android:background="@android:color/holo_green_light"
         android:orientation="vertical">
 
         <com.blackcat.currencyedittext.CurrencyEditText

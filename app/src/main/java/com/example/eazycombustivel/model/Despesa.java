@@ -1,6 +1,8 @@
 package com.example.eazycombustivel.model;
 
-public class Despesa {
+import java.io.Serializable;
+
+public class Despesa implements Serializable {
 
     private int id;
     private double valor;

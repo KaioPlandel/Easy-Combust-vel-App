@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -36,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
     private DespesaDAO despesaDAO;
     private MaterialCalendarView calendarView;
     private String dataAtual;
+    private ImageView buttonRelatorio;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,6 +54,8 @@ public class MainActivity extends AppCompatActivity {
         editTotalDespesa = findViewById(R.id.editDespesa);
         editSaldo = findViewById(R.id.editSaldo);
         calendarView = findViewById(R.id.calendarView);
+        buttonRelatorio = findViewById(R.id.buttonRelatorio);
+
 
 
         receitaDAO = new ReceitaDAO(getApplicationContext());
@@ -78,14 +82,14 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
-        menuRelatorio.setOnClickListener(new View.OnClickListener() {
+        buttonRelatorio.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, RelatorioActivity.class);
                 startActivity(intent);
             }
         });
+
 
         addDespesa.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -138,7 +142,9 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
+
     }
+
 
 
     @Override
@@ -147,20 +153,35 @@ public class MainActivity extends AppCompatActivity {
         apresentarSaldo(dataAtual);
     }
 
+
     public void apresentarSaldo(String Atual){
 
         Log.i("TAG", "onMonthChanged: " + Atual);
 
-        double totalReceita =receitaDAO.somarTotal(Atual);
-        Locale locale = new Locale("pt", "BR");
-        NumberFormat currencyFormatter = NumberFormat.getCurrencyInstance(locale);
-        editTotalGanho.setText(String.valueOf("Receita: " + currencyFormatter.format(totalReceita)));
 
-        double totalDespesa = despesaDAO.somarTotal(Atual);
-        editTotalDespesa.setText(String.valueOf("Despesa: " + currencyFormatter.format(totalDespesa)));
+        try {
+            double totalReceita =receitaDAO.somarTotal(Atual);
+            Locale locale = new Locale("pt", "BR");
+            NumberFormat currencyFormatter = NumberFormat.getCurrencyInstance(locale);
+            editTotalGanho.setText(String.valueOf("Receita: " + currencyFormatter.format(totalReceita)));
 
-        double totalSaldo = totalReceita - totalDespesa;
-        editSaldo.setText(String.valueOf("Saldo: " + currencyFormatter.format(totalSaldo)));
+            double totalDespesa = despesaDAO.somarTotal(Atual);
+            editTotalDespesa.setText(String.valueOf("Despesa: " + currencyFormatter.format(totalDespesa)));
+
+            double totalSaldo = totalReceita - totalDespesa;
+            if(totalSaldo > 0){
+                editSaldo.setTextColor(getResources().getColor(R.color.icone_color));
+            }else if(totalSaldo == 0){
+                editSaldo.setTextColor(getResources().getColor(R.color.background));
+
+            }else {
+                editSaldo.setTextColor(getResources().getColor(R.color.red));
+            }
+            editSaldo.setText(String.valueOf("Saldo: " + currencyFormatter.format(totalSaldo)));
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
 
     }
 

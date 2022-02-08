@@ -1,6 +1,7 @@
 package com.example.eazycombustivel.view;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AlertDialog;
@@ -99,12 +100,19 @@ public class ReceitaRelatorioFragment extends Fragment {
         recycleViewRelatorio.addOnItemTouchListener(new RecyclerItemClickListener(getActivity(), recycleViewRelatorio, new RecyclerItemClickListener.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-                Toast.makeText(getActivity(), "Um clique", Toast.LENGTH_SHORT).show();
+
+                //ATUALIZAR PASSANDO DADOS PARA A ACTIVITY DE ATUALIZAÇÃO
+                Receita receitaSelecionada = listaReceita.get(position);
+
+                Intent intent = new Intent(getActivity(),ReceitaActivity.class);
+                intent.putExtra("pacoteReceita",receitaSelecionada);
+                startActivity(intent);
             }
 
             @Override
             public void onLongItemClick(View view, int position) {
 
+                //APAGAR RECEITA
                 List<Receita> listaReceita = receitaDAO.listar();
                 Receita receitaSelecionada = listaReceita.get(position);
 
@@ -128,6 +136,7 @@ public class ReceitaRelatorioFragment extends Fragment {
 
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
 
             }
         }));
