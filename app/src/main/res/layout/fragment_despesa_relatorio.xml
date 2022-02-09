@@ -1,13 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
     tools:context=".view.DespesaRelatorioFragment">
 
   <androidx.recyclerview.widget.RecyclerView
       android:id="@+id/recyclerDespesa"
       android:layout_width="match_parent"
+      android:layout_height="400dp"/>
+
+  <com.prolificinteractive.materialcalendarview.MaterialCalendarView
+      android:id="@+id/calendar"
+      android:layout_width="match_parent"
+      android:layout_height="50dp"
+      android:layout_marginTop="10dp"
+      app:mcv_tileSize="50dp"
+      />
+
+  <com.github.mikephil.charting.charts.PieChart
+      android:id="@+id/grafico"
+      android:layout_width="match_parent"
       android:layout_height="match_parent"/>
 
-</FrameLayout>
+</LinearLayout>

@@ -61,14 +61,9 @@ public class MainActivity extends AppCompatActivity {
         receitaDAO = new ReceitaDAO(getApplicationContext());
         despesaDAO = new DespesaDAO(getApplicationContext());
 
-        String mes =  String.valueOf(calendarView.getCurrentDate().getMonth());
-        String ano = String.valueOf(calendarView.getCurrentDate().getYear());
-        dataAtual = 0+mes+ano;
 
 
-
-        CharSequence meses[] = {"Janeiro","Fevereiro","Março","Abril","Maio","Junho","Julho","Agosto","Setembro","Outubro","Novembro","Dezembro"};
-        calendarView.setTitleMonths(meses);
+        calendarView.setTitleMonths(DateCustom.getNomeMeses());
 
         calendarView.setOnMonthChangedListener(new OnMonthChangedListener() {
             @Override
@@ -150,6 +145,10 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
+
+        String mes =  String.valueOf(calendarView.getCurrentDate().getMonth());
+        String ano = String.valueOf(calendarView.getCurrentDate().getYear());
+        dataAtual = 0+mes+ano;
         apresentarSaldo(dataAtual);
     }
 

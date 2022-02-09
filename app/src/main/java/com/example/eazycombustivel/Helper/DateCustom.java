@@ -11,10 +11,10 @@ public class DateCustom {
 
     }
 
-    public static String getMesAnoAtual(){
+   public static CharSequence[] getNomeMeses(){
+        CharSequence meses[] = {"Janeiro","Fevereiro","Março","Abril","Maio","Junho","Julho","Agosto","Setembro","Outubro","Novembro","Dezembro"};
+        return meses;
 
-        String mes = "022022";
-        return mes;
-    }
+   }
 
 }

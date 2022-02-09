@@ -123,4 +123,23 @@ public class ReceitaDAO implements IReceita {
 
         return total;
     }
+
+    public double somarTotalCategoria(String data,String categoria){
+
+        double total = 0.0;
+        String sql = "SELECT SUM(valor) FROM " + DBHelper.NAME_TABLE + " WHERE mesAno =" +"'"+ data + "'"+ " AND categoria = "+ "'" + categoria + "'"  + ";";
+
+        Cursor cursor = read.rawQuery(sql,null);
+
+        try {
+            if(cursor.moveToFirst()){
+                total = cursor.getDouble(0);
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+        return total;
+
+    }
 }

@@ -3,6 +3,7 @@ package com.example.eazycombustivel.view;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AlertDialog;
@@ -20,12 +21,25 @@ import android.widget.Toast;
 
 import com.example.eazycombustivel.Helper.AdapterDespesa;
 import com.example.eazycombustivel.Helper.AdapterRelatorio;
+import com.example.eazycombustivel.Helper.DateCustom;
 import com.example.eazycombustivel.Helper.DespesaDAO;
 import com.example.eazycombustivel.Helper.ReceitaDAO;
 import com.example.eazycombustivel.Helper.RecyclerItemClickListener;
 import com.example.eazycombustivel.R;
 import com.example.eazycombustivel.model.Despesa;
 import com.example.eazycombustivel.model.Receita;
+import com.github.mikephil.charting.charts.BarChart;
+import com.github.mikephil.charting.charts.PieChart;
+import com.github.mikephil.charting.data.BarData;
+import com.github.mikephil.charting.data.BarDataSet;
+import com.github.mikephil.charting.data.BarEntry;
+import com.github.mikephil.charting.data.PieData;
+import com.github.mikephil.charting.data.PieDataSet;
+import com.github.mikephil.charting.data.PieEntry;
+import com.github.mikephil.charting.utils.ColorTemplate;
+import com.prolificinteractive.materialcalendarview.CalendarDay;
+import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
+import com.prolificinteractive.materialcalendarview.OnMonthChangedListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,6 +55,8 @@ public class DespesaRelatorioFragment extends Fragment {
     private RecyclerView recycleViewRelatorio;
     private DespesaDAO despesaDAO;
     private List<Despesa> listaDespesa = new ArrayList<>();
+    private PieChart pieChart;
+    private MaterialCalendarView calendar;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -91,6 +107,32 @@ public class DespesaRelatorioFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_despesa_relatorio, container, false);
 
         recycleViewRelatorio = view.findViewById(R.id.recyclerDespesa);
+        pieChart = view.findViewById(R.id.grafico);
+
+        calendar = view.findViewById(R.id.calendar);
+        calendar.setTitleMonths(DateCustom.getNomeMeses());
+
+        String mes =  String.valueOf(calendar.getCurrentDate().getMonth());
+        String ano = String.valueOf(calendar.getCurrentDate().getYear());
+         String dataAtual = 0+mes+ano;
+         gerarGrafico(dataAtual);
+
+        calendar.setOnMonthChangedListener(new OnMonthChangedListener() {
+            @Override
+            public void onMonthChanged(MaterialCalendarView widget, CalendarDay date) {
+
+                String mes = String.valueOf(date.getMonth());
+                String ano = String.valueOf(date.getYear());
+                String mesAno = 0+mes+ano;
+
+                //apresentar grafico
+                gerarGrafico(mesAno);
+
+            }
+        });
+
+
+
 
         recycleViewRelatorio.addOnItemTouchListener(new RecyclerItemClickListener(getActivity(), recycleViewRelatorio, new RecyclerItemClickListener.OnItemClickListener() {
             @Override
@@ -124,6 +166,7 @@ public class DespesaRelatorioFragment extends Fragment {
                                 if(despesaDAO.deletar(despesaSelecionada)){
                                     Toast.makeText(getActivity(),"Sucesso ao apagar despesa.",Toast.LENGTH_SHORT).show();
                                     carregarListaDespesa();
+                                    gerarGrafico(dataAtual);
 
                                 }
                             }
@@ -135,12 +178,6 @@ public class DespesaRelatorioFragment extends Fragment {
 
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
-                listaDespesa = despesaDAO.listar();
-                Despesa despesaSelecionada = listaDespesa.get(position);
-
-
-
 
             }
         }));
@@ -162,6 +199,72 @@ public class DespesaRelatorioFragment extends Fragment {
         recycleViewRelatorio.setLayoutManager(layoutManager);
         recycleViewRelatorio.setAdapter(adapterDespesa);
 
+
+    }
+
+    public void gerarGrafico(String data){
+
+        //Criando grafico
+        ArrayList<PieEntry> despesas = new ArrayList<>();
+
+        //recuperando despesas do banco e apresentando no grafico de acordo com a data
+        DespesaDAO despesaDAO = new DespesaDAO(getActivity());
+
+        PieEntry combustivel = new PieEntry((float) despesaDAO.somarTotalCategoria(data,"Combustível"),"Combustível");
+        PieEntry manutencao = new PieEntry((float) despesaDAO.somarTotalCategoria(data,"Manutencao"),"Manutenção");
+        PieEntry pneus = new PieEntry((float) despesaDAO.somarTotalCategoria(data,"Pneus"),"Pneus");
+        PieEntry pintura = new PieEntry((float) despesaDAO.somarTotalCategoria(data,"Pintura"),"Pintura");
+        PieEntry ipva = new PieEntry((float) despesaDAO.somarTotalCategoria(data,"IPVA"),"IPVA");
+        PieEntry multa = new PieEntry((float) despesaDAO.somarTotalCategoria(data,"Multa"),"Multa");
+        PieEntry financiamento = new PieEntry((float) despesaDAO.somarTotalCategoria(data,"Financiamento"),"Financiamento");
+        PieEntry lavagem = new PieEntry((float) despesaDAO.somarTotalCategoria(data,"Lavagem"),"Lavagem");
+        PieEntry seguro = new PieEntry((float) despesaDAO.somarTotalCategoria(data,"Seguro"),"Seguro");
+
+        if(combustivel.getValue() != 0){
+            despesas.add(combustivel);
+        }
+        if(manutencao.getValue() != 0){
+            despesas.add(manutencao);
+        }
+
+        if(pneus.getValue() != 0){
+            despesas.add(pneus);
+
+        } if(pintura.getValue() != 0){
+            despesas.add(pintura);
+
+        } if(ipva.getValue() != 0){
+            despesas.add(ipva);
+
+        } if(multa.getValue() != 0){
+            despesas.add(multa);
+
+        } if(financiamento.getValue() != 0){
+            despesas.add(financiamento);
+
+        } if(lavagem.getValue() != 0){
+            despesas.add(lavagem);
+
+        } if(seguro.getValue() != 0){
+            despesas.add(seguro);
+        }
+
+
+        PieDataSet pieDataSet = new PieDataSet(despesas,"Despesas");
+        pieDataSet.setColors(ColorTemplate.COLORFUL_COLORS);
+        pieDataSet.setValueTextColor(Color.WHITE);
+        pieDataSet.setValueTextSize(20f);
+
+        PieData pieData = new PieData(pieDataSet);
+
+        pieChart.setData(pieData);
+        pieChart.setEntryLabelColor(Color.BLACK);
+        pieChart.setEntryLabelTextSize(10f);
+        pieChart.getDescription().setEnabled(false);
+        pieChart.setCenterTextColor(Color.BLACK);
+        pieChart.setCenterText("Despesas");
+        pieChart.setCenterTextSize(22f);
+        pieChart.animate();
 
     }
 

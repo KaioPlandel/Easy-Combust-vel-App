@@ -2,6 +2,7 @@ package com.example.eazycombustivel.view;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AlertDialog;
@@ -18,12 +19,21 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.example.eazycombustivel.Helper.AdapterRelatorio;
+import com.example.eazycombustivel.Helper.DateCustom;
 import com.example.eazycombustivel.Helper.DespesaDAO;
 import com.example.eazycombustivel.Helper.ReceitaDAO;
 import com.example.eazycombustivel.Helper.RecyclerItemClickListener;
 import com.example.eazycombustivel.R;
 import com.example.eazycombustivel.model.Despesa;
 import com.example.eazycombustivel.model.Receita;
+import com.github.mikephil.charting.charts.PieChart;
+import com.github.mikephil.charting.data.PieData;
+import com.github.mikephil.charting.data.PieDataSet;
+import com.github.mikephil.charting.data.PieEntry;
+import com.github.mikephil.charting.utils.ColorTemplate;
+import com.prolificinteractive.materialcalendarview.CalendarDay;
+import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
+import com.prolificinteractive.materialcalendarview.OnMonthChangedListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,7 +52,8 @@ public class ReceitaRelatorioFragment extends Fragment {
     private ReceitaDAO receitaDAO;
     private DespesaDAO despesaDAO;
     private List<Receita> listaReceita = new ArrayList<>();
-
+    private PieChart graficoReceita;
+    private MaterialCalendarView calendarReceita;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -94,6 +105,28 @@ public class ReceitaRelatorioFragment extends Fragment {
         View view  = inflater.inflate(R.layout.fragment_receita_relatorio, container, false);
 
         recycleViewRelatorio = view.findViewById(R.id.recycleViewRelatorio);
+        graficoReceita = view.findViewById(R.id.graficoReceita);
+        calendarReceita = view.findViewById(R.id.calendarReceita);
+
+       calendarReceita.setTitleMonths(DateCustom.getNomeMeses());
+
+        String mes =  String.valueOf(calendarReceita.getCurrentDate().getMonth());
+        String ano = String.valueOf(calendarReceita.getCurrentDate().getYear());
+        String dataAtual = 0+mes+ano;
+
+        gerarGraficoReceita(dataAtual);
+
+        calendarReceita.setOnMonthChangedListener(new OnMonthChangedListener() {
+            @Override
+            public void onMonthChanged(MaterialCalendarView widget, CalendarDay date) {
+
+                String mes = String.valueOf(date.getMonth());
+                String ano = String.valueOf(date.getYear());
+                String mesAno = 0+mes+ano;
+                gerarGraficoReceita(mesAno);
+
+            }
+        });
 
 
 
@@ -161,6 +194,63 @@ public class ReceitaRelatorioFragment extends Fragment {
         recycleViewRelatorio.setAdapter(adapterRelatorio);
 
         
+
+    }
+
+    public void gerarGraficoReceita(String data){
+
+        //Criando grafico
+        ArrayList<PieEntry> receitas = new ArrayList<>();
+
+        //recuperando despesas do banco e apresentando no grafico de acordo com a data
+        ReceitaDAO receitaDAO = new ReceitaDAO(getActivity());
+
+        PieEntry eApp = new PieEntry((float) receitaDAO.somarTotalCategoria(data,"Entrega Aplicativo"),"Entrega App");
+        PieEntry ePaticular = new PieEntry((float) receitaDAO.somarTotalCategoria(data,"Entrega Particular"),"Entrega Particular");
+        PieEntry corridaApp = new PieEntry((float) receitaDAO.somarTotalCategoria(data,"Corrida Aplicatico"),"Corrida App");
+        PieEntry corridaParticular = new PieEntry((float) receitaDAO.somarTotalCategoria(data,"Corrida Particular"),"Corrida Particular");
+        PieEntry gorjeta = new PieEntry((float) receitaDAO.somarTotalCategoria(data,"Gorjeta"),"Gorjeta");
+        PieEntry outros = new PieEntry((float) receitaDAO.somarTotalCategoria(data,"outros"),"outros");
+
+
+        if(eApp.getValue() != 0){
+            receitas.add(eApp);
+        }
+        if(ePaticular.getValue() != 0){
+            receitas.add(ePaticular);
+        }
+
+        if(corridaApp.getValue() != 0){
+            receitas.add(corridaApp);
+
+        } if(corridaParticular.getValue() != 0){
+            receitas.add(corridaParticular);
+
+        } if(gorjeta.getValue() != 0){
+            receitas.add(gorjeta);
+
+        } if(outros.getValue() != 0){
+            receitas.add(outros);
+
+
+
+            PieDataSet pieDataSet = new PieDataSet(receitas,"Receitas");
+            pieDataSet.setColors(ColorTemplate.COLORFUL_COLORS);
+            pieDataSet.setValueTextColor(Color.WHITE);
+            pieDataSet.setValueTextSize(20f);
+
+            PieData pieData = new PieData(pieDataSet);
+
+            graficoReceita.setData(pieData);
+            graficoReceita.setEntryLabelColor(Color.BLACK);
+            graficoReceita.setEntryLabelTextSize(10f);
+            graficoReceita.getDescription().setEnabled(false);
+            graficoReceita.setCenterTextColor(Color.BLACK);
+            graficoReceita.setCenterText("Despesas");
+            graficoReceita.setCenterTextSize(22f);
+            graficoReceita.animate();
+
+    }
 
     }
 

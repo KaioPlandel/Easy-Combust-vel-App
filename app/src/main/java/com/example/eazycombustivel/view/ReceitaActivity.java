@@ -164,9 +164,9 @@ public class ReceitaActivity extends AppCompatActivity {
 
         //gera a lista de opçoes de receita
         listaReceitaOpcao = new ArrayList<>();
-        listaReceitaOpcao.add("Entregas Aplicativos");
-        listaReceitaOpcao.add("Entregas Particular");
-        listaReceitaOpcao.add("Corrida Aplicativos");
+        listaReceitaOpcao.add("Entrega Aplicativo");
+        listaReceitaOpcao.add("Entrega Particular");
+        listaReceitaOpcao.add("Corrida Aplicativo");
         listaReceitaOpcao.add("Corrida Particular");
         listaReceitaOpcao.add("Gorjeta");
         listaReceitaOpcao.add("Outros");

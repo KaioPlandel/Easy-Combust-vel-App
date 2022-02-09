@@ -63,7 +63,6 @@
                 android:layout_marginTop="10dp"
                 app:mcv_selectionColor="#00F"
                 app:mcv_tileSize="55dp"
-
                 />
 
             <TextView
