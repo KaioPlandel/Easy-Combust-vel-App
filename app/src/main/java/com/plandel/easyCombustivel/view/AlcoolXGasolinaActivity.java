@@ -1,11 +1,16 @@
 package com.plandel.easyCombustivel.view;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -18,6 +23,8 @@ public class AlcoolXGasolinaActivity extends AppCompatActivity {
    private Button calcular,apagar;
    private LinearLayout buttonVoltar;
    private TextView textTitulo;
+   private ImageView ajudaAlXGas;
+   private ProgressBar progressBarAXG;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +39,18 @@ public class AlcoolXGasolinaActivity extends AppCompatActivity {
         calcular = findViewById(R.id.buttonCalcular2);
         apagar = findViewById(R.id.buttonLimpar2);
         buttonVoltar = findViewById(R.id.buttonVoltar3);
+        ajudaAlXGas = findViewById(R.id.ajudaAlXGas);
+        progressBarAXG = findViewById(R.id.progressBarAXG);
+
+
+        ajudaAlXGas.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                abrirDialog();
+
+            }
+        });
 
 
 
@@ -45,10 +64,9 @@ public class AlcoolXGasolinaActivity extends AppCompatActivity {
         apagar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                textTitulo.setText(titulo);
                 editValorAlcool.setText("");
                 editvalorGasolina.setText("");
-                textTitulo.setText("");
+                textTitulo.setText(titulo);
             }
         });
 
@@ -80,14 +98,45 @@ public class AlcoolXGasolinaActivity extends AppCompatActivity {
 
             double valorComparacao = valorAlcool / valorGasolina;
 
-            if (valorComparacao > 0.7){
-                textTitulo.setText("O melhor combustível para Você é a GASOLINA");
-            }else {
-                textTitulo.setText("O melhor combustível para Você é o ÀLCOOL");
-            }
+            textTitulo.setText("");
+            progressBarAXG.setVisibility(View.VISIBLE);
+
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    progressBarAXG.setVisibility(View.GONE);
+
+                    textTitulo.setTextColor(getResources().getColor(R.color.background));
+                    if (valorComparacao > 0.7){
+                        textTitulo.setText("O melhor combustível para Você é a GASOLINA");
+                    }else {
+                        textTitulo.setText("O melhor combustível para Você é o ÀLCOOL");
+                    }
+
+                }
+            },1000);
+
+
 
         }
 
+    }
+
+    public void abrirDialog(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Descrição")
+                .setMessage("   1- Valor Litro Gasolina: Adicione o valor do litro da gasolina. \n \n"  +
+                        "    2- Valor Litro Álcool: Adicione o valor do litro do álcool. \n \n" +
+                        "    3- O resulta será o combustível mais econômico no momento. \n \n")
+                .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                });
+
+        builder.create();
+        builder.show();
     }
 
     public boolean camposAnalizados(){

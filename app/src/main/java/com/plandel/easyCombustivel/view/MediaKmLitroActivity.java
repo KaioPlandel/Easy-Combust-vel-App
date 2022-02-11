@@ -143,7 +143,7 @@ public class MediaKmLitroActivity extends AppCompatActivity {
                          titulo.setTextColor(getResources().getColor(R.color.background));
                          titulo.setText("Media: " + valorFormatado + " Km/L");
                      }
-                 },2000);
+                 },1000);
 
              }
 

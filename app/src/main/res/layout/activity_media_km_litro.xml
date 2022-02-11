@@ -79,23 +79,13 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/textView2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Km inicial:"
-            android:textSize="18sp"
-            app:layout_constraintBottom_toTopOf="@+id/editKmInicial"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.003"
-            app:layout_constraintStart_toStartOf="parent" />
-
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/editKmInicial"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="50dp"
+            android:hint="Km inicial"
             android:inputType="numberDecimal"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -111,25 +101,12 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Km Final:"
-            android:textColor="@color/black"
-            android:textSize="18sp"
-            android:layout_marginTop="16dp"
-            app:layout_constraintBottom_toTopOf="@+id/editKmFinal"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.003"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editKmInicial" />
-
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/editKmFinal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="28dp"
-            android:hint="ex: 20.410"
+            android:layout_marginTop="16dp"
+            android:hint="Km final"
             app:startIconDrawable="@drawable/ic_baseline_last_page_24"
             android:inputType="numberDecimal"
             app:layout_constraintEnd_toEndOf="parent"
@@ -149,8 +126,8 @@
             android:id="@+id/editLitroAbastecido"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="18dp"
-            android:hint="Litros Abastecidos"
+            android:layout_marginTop="16dp"
+            android:hint="Litros abastecidos"
             app:startIconDrawable="@drawable/ic_baseline_water_drop_24"
             android:inputType="numberDecimal"
             app:layout_constraintEnd_toEndOf="parent"
@@ -171,7 +148,7 @@
             android:id="@+id/buttonCalcular"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="18dp"
+            android:layout_marginTop="16dp"
             android:text="Calcular"
             style="?attr/materialButtonOutlinedStyle"
             app:layout_constraintEnd_toEndOf="parent"
@@ -184,7 +161,7 @@
             android:id="@+id/buttonLimpar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="18dp"
+            android:layout_marginTop="16dp"
             android:text="Limpar"
             style="?attr/materialButtonOutlinedStyle"
             app:layout_constraintEnd_toEndOf="parent"
