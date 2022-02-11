@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    tools:context=".view.ReceitaRelatorioFragment">
+    tools:context="com.plandel.easyCombustivel.view.ReceitaRelatorioFragment">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycleViewRelatorio"
@@ -22,10 +22,10 @@
        app:mcv_tileSize="50dp"
         />
 
-    <com.github.mikephil.charting.charts.PieChart
-        android:id="@+id/graficoReceita"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+   <com.github.mikephil.charting.charts.PieChart
+       android:id="@+id/graficoReceita"
+       android:layout_width="match_parent"
+       android:layout_height="match_parent"/>
 
 
 

@@ -9,5 +9,5 @@ dependencyResolutionManagement {
         maven { url 'https://jitpack.io' }
     }
 }
-rootProject.name = "Eazy Combustivel"
+rootProject.name = "Easy Combustivel"
 include ':app'

@@ -1,14 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:fab="http://fab"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:fab="http://fab"
     android:background="@color/background"
-    tools:context=".view.MainActivity">
-
+    tools:context="com.plandel.easyCombustivel.view.MainActivity">
 
 
     <ImageView
@@ -22,6 +20,7 @@
 
 
     <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="@+id/imageView4"
@@ -59,11 +58,10 @@
                 android:id="@+id/calendarView"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                app:mcv_showOtherDates="all"
                 android:layout_marginTop="10dp"
                 app:mcv_selectionColor="#00F"
-                app:mcv_tileSize="55dp"
-                />
+                app:mcv_showOtherDates="all"
+                app:mcv_tileSize="55dp" />
 
             <TextView
                 android:id="@+id/textoTotalGanho"
@@ -72,8 +70,8 @@
                 android:layout_gravity="start"
                 android:layout_marginHorizontal="10dp"
                 android:layout_marginTop="15dp"
-                android:text="Ganhos:R$200,00"
                 android:gravity="center"
+                android:text="Ganhos:R$200,00"
                 android:textColor="@color/background"
                 android:textSize="20sp" />
 
@@ -85,8 +83,8 @@
                 android:layout_gravity="start"
                 android:layout_marginHorizontal="10dp"
                 android:layout_marginTop="10dp"
-                android:text="Despesa:"
                 android:gravity="center"
+                android:text="Despesa:"
                 android:textColor="@color/background"
                 android:textSize="20sp" />
 
@@ -97,14 +95,13 @@
                 android:layout_gravity="start"
                 android:layout_marginHorizontal="10dp"
                 android:layout_marginTop="10dp"
-                android:text="Saldo : R$100,00"
                 android:gravity="center"
+                android:text="Saldo : R$100,00"
                 android:textColor="@color/black"
                 android:textSize="20sp" />
 
         </LinearLayout>
     </LinearLayout>
-
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout4"
@@ -119,9 +116,9 @@
             android:id="@+id/buttonalcoolXGasolina"
             android:layout_width="150dp"
             android:layout_height="150dp"
+            android:layout_marginTop="30dp"
             android:background="@drawable/blue_background"
             app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginTop="30dp"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/buttonCalculoKmLitro"
             app:layout_constraintTop_toTopOf="parent">
@@ -309,16 +306,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_baseline_attach_money_22"
-                app:fab_label="Adicionar Despesa"
+                app:fab_label="Adicionar Gasto"
                 fab:fab_size="mini" />
 
             <com.github.clans.fab.FloatingActionButton
                 android:id="@+id/addReceita"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:fab_label="Adicionar Receita"
-                app:fab_colorNormal="@color/icone_color"
                 android:src="@drawable/ic_baseline_attach_money_22"
+                app:fab_colorNormal="@color/icone_color"
+                app:fab_label="Adicionar Ganho"
                 fab:fab_label="Menu item 1"
                 fab:fab_size="mini" />
 
@@ -326,6 +323,11 @@
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <include
+        android:id="@+id/include"
+        android:visibility="gone"
+        layout="@layout/fragment_fundo" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

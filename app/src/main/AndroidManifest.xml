@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.eazycombustivel"
+    package="com.plandel.easyCombustivel"
     >
 
     <application
@@ -11,36 +11,36 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.EazyCombustivel">
         <activity
-            android:name=".view.RelatorioActivity"
+            android:name="com.plandel.easyCombustivel.view.RelatorioActivity"
             android:exported="false" />
         <activity
-            android:name=".view.DespesaActivity"
+            android:name="com.plandel.easyCombustivel.view.DespesaActivity"
             android:exported="false"
-            android:parentActivityName=".view.MainActivity"
+            android:parentActivityName="com.plandel.easyCombustivel.view.MainActivity"
             />
         <activity
-            android:name=".view.ReceitaActivity"
+            android:name="com.plandel.easyCombustivel.view.ReceitaActivity"
             android:exported="false"
-            android:parentActivityName=".view.MainActivity"
+            android:parentActivityName="com.plandel.easyCombustivel.view.MainActivity"
             />
         <activity
-            android:name=".view.CustoXTrajetoActivity"
+            android:name="com.plandel.easyCombustivel.view.CustoXTrajetoActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".view.QuantidadeLitrosActivity"
+            android:name="com.plandel.easyCombustivel.view.QuantidadeLitrosActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".view.AlcoolXGasolinaActivity"
+            android:name="com.plandel.easyCombustivel.view.AlcoolXGasolinaActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".view.MediaKmLitroActivity"
+            android:name="com.plandel.easyCombustivel.view.MediaKmLitroActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".view.MainActivity"
+            android:name="com.plandel.easyCombustivel.view.MainActivity"
             android:exported="true"
             android:screenOrientation="portrait">
             <intent-filter>
