@@ -2,6 +2,7 @@ package com.plandel.easyCombustivel.view;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.content.DialogInterface;
 import android.os.Bundle;
@@ -25,6 +26,7 @@ public class AlcoolXGasolinaActivity extends AppCompatActivity {
    private TextView textTitulo;
    private ImageView ajudaAlXGas;
    private ProgressBar progressBarAXG;
+   private ConstraintLayout  constraintLayout3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +37,7 @@ public class AlcoolXGasolinaActivity extends AppCompatActivity {
         editvalorGasolina = findViewById(R.id.editvalorGasolina1);
         textTitulo = findViewById(R.id.textTitulo1);
         String titulo =  textTitulo.getText().toString();
+        constraintLayout3 = findViewById(R.id.constraintLayout3);
 
         calcular = findViewById(R.id.buttonCalcular2);
         apagar = findViewById(R.id.buttonLimpar2);
@@ -67,6 +70,7 @@ public class AlcoolXGasolinaActivity extends AppCompatActivity {
                 editValorAlcool.setText("");
                 editvalorGasolina.setText("");
                 textTitulo.setText(titulo);
+                constraintLayout3.setBackgroundColor(getResources().getColor(R.color.white));
             }
         });
 
@@ -106,11 +110,14 @@ public class AlcoolXGasolinaActivity extends AppCompatActivity {
                 public void run() {
                     progressBarAXG.setVisibility(View.GONE);
 
-                    textTitulo.setTextColor(getResources().getColor(R.color.background));
+                    textTitulo.setTextColor(getResources().getColor(R.color.black));
+                    constraintLayout3.setBackgroundColor(getResources().getColor(R.color.background_result));
+
                     if (valorComparacao > 0.7){
-                        textTitulo.setText("O melhor combustível para Você é a GASOLINA");
+                        textTitulo.setText("O melhor combustível para você é a GASOLINA");
+
                     }else {
-                        textTitulo.setText("O melhor combustível para Você é o ÀLCOOL");
+                        textTitulo.setText("O melhor combustível para você é o ÁLCOOL");
                     }
 
                 }

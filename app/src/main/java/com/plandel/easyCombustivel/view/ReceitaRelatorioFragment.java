@@ -232,7 +232,7 @@ public class ReceitaRelatorioFragment extends Fragment {
         graficoReceita.setEntryLabelTextSize(10f);
         graficoReceita.getDescription().setEnabled(false);
         graficoReceita.setCenterTextColor(Color.BLACK);
-        graficoReceita.setCenterText("Ganhos");
+        graficoReceita.setCenterText("Receitas");
         graficoReceita.setCenterTextSize(22f);
         graficoReceita.calculateOffsets();
         graficoReceita.animate();

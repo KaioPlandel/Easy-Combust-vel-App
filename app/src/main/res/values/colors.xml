@@ -10,5 +10,6 @@
     <color name="icone_color">#AFB42F</color>
     <color name="background">#0E1822</color>
     <color name="background_circle">#343e4a</color>
+    <color name="background_result">#ef6c00</color>
     <color name="red">#F80808</color>
 </resources>

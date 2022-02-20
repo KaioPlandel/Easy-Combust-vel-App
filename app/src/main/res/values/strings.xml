@@ -2,4 +2,25 @@
     <string name="app_name">Easy Combustivel</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="textInfoGA">Use os campos abaixo para efetuar o cálculo e descubra qual combustível será mais econômico para você.</string>
+    <string name="valor_litro_lcool">Valor Litro Álcool</string>
+    <string name="calcularA">Calcular</string>
+    <string name="limpar">Limpar</string>
+    <string name="valor_litro_gasolina">Valor Litro Gasolina</string>
+    <string name="calcule_o_consumo_do_seu_ve_culo_km_l">Calcule o consumo do seu veículo (km/L).</string>
+    <string name="km_final">Km final</string>
+    <string name="litros_abastecidos">Litros abastecidos</string>
+    <string name="calcular">Calcular</string>
+    <string name="limparA">Limpar</string>
+    <string name="quantidade_de_litros_pelo_valor_a_pagar">Quantidade de litros pelo valor a pagar.</string>
+    <string name="valor_a_pagar">Valor a Pagar</string>
+    <string name="valor_litro_combust_vel">Valor litro Combustível</string>
+    <string name="textTitle">Descubra quanto irá gastar para percorrer um destino específico.</string>
+    <string name="receitaText">Receita:R$200,00</string>
+    <string name="despesa">Despesa:</string>
+    <string name="saldo_r_100_00">Saldo : R$100,00</string>
+    <string name="mediaConsumo">Média de consumo</string>
+    <string name="lcool_x_gasolina">Álcool X Gasolina</string>
+    <string name="custo_x_trajeto">Custo X Trajeto</string>
+    <string name="combust_vel">Combustível</string>
 </resources>

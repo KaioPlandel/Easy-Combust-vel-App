@@ -2,6 +2,7 @@ package com.plandel.easyCombustivel.view;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.content.DialogInterface;
 import android.os.Bundle;
@@ -29,6 +30,7 @@ public class MediaKmLitroActivity extends AppCompatActivity {
   private TextView titulo;
   private ProgressBar progressBarMedia;
   private ImageView ajudaMedia;
+  private ConstraintLayout constraintLayout3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +42,7 @@ public class MediaKmLitroActivity extends AppCompatActivity {
         buttonLimpar = findViewById(R.id.buttonLimpar);
         titulo = findViewById(R.id.textViewTitulo);
         String tituloReal = titulo.getText().toString();
+        constraintLayout3 = findViewById(R.id.constraintLayout3);
 
         editKmFinal = findViewById(R.id.editKmFinal1);
         editKmInicial = findViewById(R.id.editKmInicial1);
@@ -71,6 +74,7 @@ public class MediaKmLitroActivity extends AppCompatActivity {
                 editKmFinal.setText("");
                 editKmInicial.setText("");
                 editLitroAbastecido.setText("");
+                constraintLayout3.setBackgroundColor(getResources().getColor(R.color.white));
                 titulo.setText(tituloReal);
             }
         });
@@ -87,10 +91,12 @@ public class MediaKmLitroActivity extends AppCompatActivity {
     public void abrirDialog(){
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Descrição")
-                .setMessage("   1- Km inicial: Adicione o km inicial do seu veículo antes de abastecer. \n \n"  +
-                        "    2- km final: Quando seu veículo estiver na reserva adicione o km final. \n \n" +
-                        "    3- litros Abastecidos: adicione a quantidade de litros que foi abastecido. \n \n" +
-                        " O resultado será a média que seu veículo faz por litro de combustível. \n \n")
+                .setMessage(
+                        " 1- Km inicial: Adicione o km inicial do seu veículo antes de abastecer. \n \n"  +
+                        "    2- Km final: Quando seu veículo estiver na reserva adicione o km final. \n \n" +
+                        "    3- Litros abastecidos: adicione a quantidade de litros que foi abastecido. \n \n" +
+                        " O resultado será a média que seu veículo faz por litro de combustível. \n \n" +
+                                "Obs: O Km inicial e o Km final devem ser adicionados quando o veículo entrar na reserva.")
                 .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -135,13 +141,18 @@ public class MediaKmLitroActivity extends AppCompatActivity {
                  String valorFormatado = new DecimalFormat("0.0").format(mediaKm);
 
                  titulo.setText("");
+
                  progressBarMedia.setVisibility(View.VISIBLE);
                  new Handler().postDelayed(new Runnable() {
                      @Override
                      public void run() {
+
                          progressBarMedia.setVisibility(View.GONE);
-                         titulo.setTextColor(getResources().getColor(R.color.background));
-                         titulo.setText("Media: " + valorFormatado + " Km/L");
+                         titulo.setTextColor(getResources().getColor(R.color.black));
+                         titulo.setTextSize(22);
+                         constraintLayout3.setBackgroundColor(getResources().getColor(R.color.background_result));
+                         titulo.setText("Média: " + valorFormatado + " Km/L");
+
                      }
                  },1000);
 
@@ -161,7 +172,7 @@ public class MediaKmLitroActivity extends AppCompatActivity {
                 if(!editLitroAbastecido.getText().toString().isEmpty()){
                     return true;
                 }else{
-                    Toast.makeText(getApplicationContext(), "Digite a quantidade de litros Abastecidos", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Digite a quantidade de litros abastecidos", Toast.LENGTH_SHORT).show();
                     return false;
                 }
             }else{

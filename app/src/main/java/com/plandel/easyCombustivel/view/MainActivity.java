@@ -160,10 +160,10 @@ public class MainActivity extends AppCompatActivity {
             double totalReceita =receitaDAO.somarTotal(Atual);
             Locale locale = new Locale("pt", "BR");
             NumberFormat currencyFormatter = NumberFormat.getCurrencyInstance(locale);
-            editTotalGanho.setText(String.valueOf("Ganhos: " + currencyFormatter.format(totalReceita)));
+            editTotalGanho.setText(String.valueOf("Receita: " + currencyFormatter.format(totalReceita)));
 
             double totalDespesa = despesaDAO.somarTotal(Atual);
-            editTotalDespesa.setText(String.valueOf("Gastos: " + currencyFormatter.format(totalDespesa)));
+            editTotalDespesa.setText(String.valueOf("Despesa: " + currencyFormatter.format(totalDespesa)));
 
             double totalSaldo = totalReceita - totalDespesa;
             if(totalSaldo > 0){

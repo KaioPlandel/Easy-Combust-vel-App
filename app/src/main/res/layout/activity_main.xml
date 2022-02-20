@@ -35,7 +35,7 @@
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:elevation="5dp"
-            android:src="@drawable/ic_baseline_autorenew_24" />
+            android:src="@drawable/ic_baseline_assignment_24" />
 
     </LinearLayout>
 
@@ -71,7 +71,7 @@
                 android:layout_marginHorizontal="10dp"
                 android:layout_marginTop="15dp"
                 android:gravity="center"
-                android:text="Ganhos:R$200,00"
+                android:text="@string/receitaText"
                 android:textColor="@color/background"
                 android:textSize="20sp" />
 
@@ -84,7 +84,7 @@
                 android:layout_marginHorizontal="10dp"
                 android:layout_marginTop="10dp"
                 android:gravity="center"
-                android:text="Despesa:"
+                android:text="@string/despesa"
                 android:textColor="@color/background"
                 android:textSize="20sp" />
 
@@ -96,7 +96,7 @@
                 android:layout_marginHorizontal="10dp"
                 android:layout_marginTop="10dp"
                 android:gravity="center"
-                android:text="Saldo : R$100,00"
+                android:text="@string/saldo_r_100_00"
                 android:textColor="@color/black"
                 android:textSize="20sp" />
 
@@ -140,7 +140,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="2dp"
                 android:gravity="center"
-                android:text="Álcool X Gasolina"
+                android:text="@string/lcool_x_gasolina"
                 android:textColor="@color/black"
                 android:textSize="16sp"
                 android:textStyle="bold"
@@ -178,7 +178,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="Média de consumo"
+                android:text="@string/mediaConsumo"
                 android:textColor="@color/black"
                 android:textSize="16sp"
                 android:textStyle="bold"
@@ -215,7 +215,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="Custo X Trajeto"
+                android:text="@string/custo_x_trajeto"
                 android:textColor="@color/black"
                 android:textSize="16sp"
                 android:textStyle="bold"
@@ -251,7 +251,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="Quantos litros vai dar"
+                android:text="@string/combust_vel"
                 android:textColor="@color/black"
                 android:textSize="16sp"
                 android:textStyle="bold"
@@ -306,7 +306,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_baseline_attach_money_22"
-                app:fab_label="Adicionar Gasto"
+                app:fab_label="Nova Despesa"
                 fab:fab_size="mini" />
 
             <com.github.clans.fab.FloatingActionButton
@@ -315,7 +315,7 @@
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_baseline_attach_money_22"
                 app:fab_colorNormal="@color/icone_color"
-                app:fab_label="Adicionar Ganho"
+                app:fab_label="Nova Receita"
                 fab:fab_label="Menu item 1"
                 fab:fab_size="mini" />
 
