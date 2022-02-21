@@ -7,6 +7,8 @@ dependencyResolutionManagement {
         maven { url "https://jitpack.io" }
         //calendar
         maven { url 'https://jitpack.io' }
+
+
     }
 }
 rootProject.name = "Easy Combustivel"

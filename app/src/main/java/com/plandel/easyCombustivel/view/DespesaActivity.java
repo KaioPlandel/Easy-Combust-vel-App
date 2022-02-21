@@ -19,6 +19,7 @@ import com.plandel.easyCombustivel.R;
 import com.plandel.easyCombustivel.model.Despesa;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.textfield.TextInputLayout;
+import com.santalu.maskara.widget.MaskEditText;
 
 import java.util.ArrayList;
 import java.util.Locale;
@@ -30,10 +31,11 @@ public class DespesaActivity extends AppCompatActivity {
     private ArrayList<String> listaDespesa;
     private ArrayAdapter<String> arrayAdapter;
     private CurrencyEditText textValorDespesa;
-    private EditText editDataDespesa, editObsDespesa;
+    private EditText editObsDespesa;
     private FloatingActionButton buttonEnviarDespesa;
     private DespesaDAO despesaDAO;
     private Toolbar toolbar;
+    private MaskEditText editDataDespesa;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,10 +50,12 @@ public class DespesaActivity extends AppCompatActivity {
         buttonEnviarDespesa = findViewById(R.id.buttonEnviarDespesa);
         toolbar = findViewById(R.id.toolbar);
 
-        toolbar.setTitle("Adicionar Despesa");
-        toolbar.setBackgroundColor(getResources().getColor(R.color.background));
-        toolbar.setTitleTextColor(getResources().getColor(R.color.white));
+        toolbar.setTitle("Nova Despesa");
+        toolbar.setTitleTextColor(getResources().getColor(R.color.black));
         setSupportActionBar(toolbar);
+        if(toolbar != null){
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
 
         //Instanciar despesaDao
         despesaDAO = new DespesaDAO(getApplicationContext());

@@ -38,6 +38,7 @@
             android:layout_marginHorizontal="30dp"
             android:gravity="center"
             android:text="@string/quantidade_de_litros_pelo_valor_a_pagar"
+            android:textColor="@color/background"
             android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />

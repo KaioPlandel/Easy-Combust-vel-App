@@ -2,6 +2,7 @@ package com.plandel.easyCombustivel.view;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import androidx.appcompat.widget.Toolbar;
 import androidx.viewpager.widget.ViewPager;
 
 
@@ -14,14 +15,18 @@ import com.ogaclejapan.smarttablayout.utils.v4.FragmentPagerItems;
 import com.plandel.easyCombustivel.R;
 
 public class RelatorioActivity extends AppCompatActivity {
-
-
-
+    Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_relatorio);
+        toolbar = findViewById(R.id.toolbarRelatorio);
+        toolbar.setTitle("Easy Combustível");
+        setSupportActionBar(toolbar);
+        if (toolbar != null){
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
 
 
 

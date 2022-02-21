@@ -52,6 +52,7 @@ public class ReceitaDAO implements IReceita {
         cv.put("valor", receita.getValor());
         cv.put("categoria", receita.getCategoria());
         cv.put("data", receita.getData());
+        cv.put("mesAno",receita.getMesAno());
         cv.put("observacao", receita.getObservacao());
 
         try {

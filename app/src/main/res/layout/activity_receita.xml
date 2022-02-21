@@ -55,33 +55,22 @@
                 android:id="@+id/texto2"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="Categoria"
+                android:text="@string/categoria"
                 android:textSize="18sp"
                 android:inputType="none" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
-        <FrameLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-            <EditText
+            <com.santalu.maskara.widget.MaskEditText
                 android:id="@+id/editData"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:inputType="date"
+                android:inputType="number"
+                app:mask="__/__/____"
+                app:maskCharacter="_"
+                app:maskStyle="completable"
                 android:layout_marginHorizontal="10dp"
-                android:drawableLeft="@drawable/ic_baseline_calendar_month_24"
-                android:hint="Data 12/05/2021" />
-            <CalendarView
-                android:id="@+id/calendar"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:visibility="gone"
-                />
-
-        </FrameLayout>
-
+                android:drawableStart="@drawable/ic_baseline_calendar_month_24"/>
 
 
         <EditText
@@ -90,9 +79,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:layout_marginHorizontal="10dp"
-            android:drawableLeft="@drawable/ic_baseline_edit_note_24"
-            android:hint="Observação"
-            />
+            android:drawableStart="@drawable/ic_baseline_edit_note_24"
+            android:hint="@string/observa_o" />
 
     </LinearLayout>
 

@@ -20,6 +20,7 @@ import com.plandel.easyCombustivel.R;
 import com.plandel.easyCombustivel.model.Receita;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.textfield.TextInputLayout;
+import com.santalu.maskara.widget.MaskEditText;
 
 import java.util.ArrayList;
 import java.util.Locale;
@@ -29,11 +30,12 @@ public class ReceitaActivity extends AppCompatActivity {
     private AutoCompleteTextView texto2;
     private ArrayList<String> listaReceitaOpcao;
     private ArrayAdapter<String> arrayAdapter;
-    private EditText editData,observacao;
+    private EditText observacao;
     private CurrencyEditText textValor;
     private FloatingActionButton floating_action_button;
     private ReceitaDAO receitaDAO;
     private Toolbar toolbarReceita;
+    private MaskEditText editData;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,10 +53,13 @@ public class ReceitaActivity extends AppCompatActivity {
         toolbarReceita = findViewById(R.id.toolbarReceita);
 
         //configurar toolbar
-        toolbarReceita.setTitle("Adicionar Receita");
-        toolbarReceita.setBackgroundColor(getResources().getColor(R.color.background));
-        toolbarReceita.setTitleTextColor(getResources().getColor(R.color.white));
+        toolbarReceita.setTitle("Nova Receita");
+
+        toolbarReceita.setTitleTextColor(getResources().getColor(R.color.black));
         setSupportActionBar(toolbarReceita);
+        if(toolbarReceita != null){
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
 
         //focar no editText
         //Configurar localidade para pt. mascara moeda

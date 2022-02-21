@@ -12,7 +12,10 @@
         android:theme="@style/Theme.EazyCombustivel">
         <activity
             android:name="com.plandel.easyCombustivel.view.RelatorioActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:parentActivityName=".view.MainActivity"
+            android:launchMode="singleTop"
+            />
         <activity
             android:name="com.plandel.easyCombustivel.view.DespesaActivity"
             android:exported="false"

@@ -39,6 +39,7 @@
             android:layout_height="match_parent"
             android:layout_marginHorizontal="30dp"
             android:gravity="center"
+            android:textColor="@color/background"
             android:text="@string/calcule_o_consumo_do_seu_ve_culo_km_l"
             android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"

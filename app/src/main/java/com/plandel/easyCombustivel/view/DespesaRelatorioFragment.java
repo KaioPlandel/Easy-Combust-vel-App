@@ -265,7 +265,7 @@ public class DespesaRelatorioFragment extends Fragment {
         pieChart.getDescription().setEnabled(false);
         pieChart.setCenterTextColor(Color.BLACK);
         pieChart.setCenterText("Despesas");
-        pieChart.setCenterTextSize(22f);
+        pieChart.setCenterTextSize(16f);
         pieChart.calculateOffsets();
         pieChart.animate();
 

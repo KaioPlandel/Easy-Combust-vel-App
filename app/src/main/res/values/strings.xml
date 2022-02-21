@@ -23,4 +23,6 @@
     <string name="lcool_x_gasolina">Álcool X Gasolina</string>
     <string name="custo_x_trajeto">Custo X Trajeto</string>
     <string name="combust_vel">Combustível</string>
+    <string name="categoria">Categoria</string>
+    <string name="observa_o">Observação</string>
 </resources>

@@ -55,15 +55,20 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
-        <EditText
+        <com.santalu.maskara.widget.MaskEditText
             android:id="@+id/editDataDespesa"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:inputType="number"
+            app:mask="__/__/____"
+            app:maskCharacter="_"
             android:layout_marginTop="10dp"
-            android:inputType="date"
             android:layout_marginHorizontal="10dp"
             android:drawableLeft="@drawable/ic_baseline_calendar_month_24"
-            android:hint="Data 12/05/2021" />
+            app:maskStyle="completable" />
+
+
+
 
         <EditText
             android:id="@+id/editObsDespesa"
