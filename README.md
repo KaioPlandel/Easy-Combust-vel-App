@@ -1,4 +1,4 @@
-# Eazy-Combustivel-App
+# Easy-Combustivel-App
 App com o intuito de ajudar no controle financeiro de entregadores 
 de aplicativo e Motoristas.
 ![Screenshot_2022-03-20-23-28-51-677_com plandel easycombustivel](https://user-images.githubusercontent.com/85317117/159197984-6ae308e9-53aa-4d7f-973b-0f8abfbb18e2.jpg)
