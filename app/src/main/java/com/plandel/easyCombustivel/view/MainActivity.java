@@ -53,14 +53,8 @@ public class MainActivity extends AppCompatActivity {
         editSaldo = findViewById(R.id.editSaldo);
         calendarView = findViewById(R.id.calendarView);
         buttonRelatorio = findViewById(R.id.buttonRelatorio);
-
-
-
         receitaDAO = new ReceitaDAO(getApplicationContext());
         despesaDAO = new DespesaDAO(getApplicationContext());
-
-
-
         calendarView.setTitleMonths(DateCustom.getNomeMeses());
 
         calendarView.setOnMonthChangedListener(new OnMonthChangedListener() {
